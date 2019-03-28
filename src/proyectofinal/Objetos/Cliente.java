@@ -1,14 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectofinal.Objetos;
 
-/**
- *
- * @author ulacit
- */
-public class Cliente {
-    
+
+public class Cliente extends Usuario{
+    public int telefono;
+
+    public Cliente(int telefono, String nombre, String apellidos, String correo, String password, int id) {
+        super(nombre, apellidos, correo, password, id);
+        this.telefono = telefono;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
 }
