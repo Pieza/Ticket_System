@@ -18,6 +18,7 @@ public class ListaTickets extends javax.swing.JFrame {
      */
     public ListaTickets() {
         initComponents();
+        this.setLocationRelativeTo(null);
         LblUsuarioLogueado.setText(InformacionUsuario.usuario.getNombre()+ " " + InformacionUsuario.usuario.getApellidos());
     }
 

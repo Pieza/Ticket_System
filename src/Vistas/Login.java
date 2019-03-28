@@ -34,6 +34,7 @@ fileVector.add(new Vector(Arrays.asList(new String[]{"row2 col1", "row2 col2"}))
         Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_1, "Martir", "Canales", "martir@mail.com", "123", 4));
         Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5));
         Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Luis", "Marin", "luis@mail.com", "123", 6));
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
