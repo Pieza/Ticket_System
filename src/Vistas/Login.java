@@ -18,12 +18,7 @@ import proyectofinal.Utilidades.InformacionUsuario;
  */
 public class Login extends javax.swing.JFrame {
 
-    /*
-    Vector fileVector = new Vector();
-fileVector.add(new Vector(Arrays.asList(new String[]{"row1 col1", "row1 col2"})));
-fileVector.add(new Vector(Arrays.asList(new String[]{"row2 col1", "row2 col2"})));
-    
-     */
+
     /**
      * Creates new form Login
      */

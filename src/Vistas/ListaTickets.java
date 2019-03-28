@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import java.util.Arrays;
+import java.util.Vector;
+import proyectofinal.Utilidades.Data;
 import proyectofinal.Utilidades.InformacionUsuario;
 
 /**
@@ -20,7 +23,14 @@ public class ListaTickets extends javax.swing.JFrame {
         initComponents();
         LblUsuarioLogueado.setText(InformacionUsuario.usuario);
     }
-
+    
+    private void cargarTicketes(){
+        String[] listaTicketes = Data.TICKETES.extrae()
+        Vector fileVector = new Vector();
+        fileVector.add(new Vector(Arrays.asList(new String[]{"row1 col1", "row1 col2"})));
+        fileVector.add(new Vector(Arrays.asList(new String[]{"row2 col1", "row2 col2"})));
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
