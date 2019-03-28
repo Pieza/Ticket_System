@@ -9,6 +9,11 @@ public class Ticket {
     private String descripcion, historial, nuevaActualizacion;
     private EstadoTickete estado;
 
+    @Override
+    public String toString() {
+        return id + "," + descripcion + "," + estado + "," + creadoPor.getNombre() + " " + creadoPor.getApellidos();
+    }
+
     public Ticket(){}
     
     public Ticket(int id, Usuario creadoPor, Administrador asignadolvl1, Administrador asignadolvl2, Administrador asignadolvl3, String descripcion, String historial, String nuevaActualizacion, EstadoTickete estado) {
