@@ -1,9 +1,5 @@
 package proyectofinal.Enums;
 
-/**
- *
- * @author ulacit
- */
-public class EstadoTickete {
-    
+public enum EstadoTickete {
+    EN_PROGRESO, COMPLETADO, ESPERANDO_RESPUESTA, SIN_ASIGNAR
 }

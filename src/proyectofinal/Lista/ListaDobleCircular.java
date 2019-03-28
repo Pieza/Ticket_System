@@ -1,50 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectofinal.Lista;
 
-import proyectofinal.Lista.Nodo;
 import javax.swing.JOptionPane;
+import proyectofinal.Objetos.Usuario;
 
-/**
- *
- * @author ulacit
- */
+
 public class ListaDobleCircular {
 
     private Nodo cabeza, ultimo;
 
-    public void inserta(Juego j) {
+    public void inserta(Usuario u) {
         //preguntamos si cabeza es null para saber si esta vacio o no
         if (cabeza == null) {
             //Creamos el objeto y le asignamos a cabeza
-            cabeza = new Nodo(j);
+            cabeza = new Nodo(u);
             ultimo = cabeza;
         } else {
-            if (j.getYear() < cabeza.getDato().getYear()) {
+            if (u.getId()< cabeza.getDato().getId()) {
                 //como el dato se va a guardar a la izquierda entonces lo creamos como la izquierda de cabeza
                 //por lo que decimos que es el back de cabeza
-                cabeza.setBack(new Nodo(j));
+                cabeza.setBack(new Nodo(u));
                 //a la vez decimos que el siguiente de cabeza.getBack va a ser cabeza
                 cabeza.getBack().setNext(cabeza);
                 //cambiamos el puntero de cabeza
                 cabeza = cabeza.getBack();
             } else {
                 //preguntamos si el nuevo juego es mayor a ultimo para agregarlo al final
-                if (j.getYear() > ultimo.getDato().getYear()) {
-                    ultimo.setNext(new Nodo(j));
+                if (u.getId()> ultimo.getDato().getId()) {
+                    ultimo.setNext(new Nodo(u));
                     ultimo.getNext().setBack(ultimo);
                     ultimo = ultimo.getNext();
                 } else {
                     //si el dato es menor que ultimo
                     Nodo aux = cabeza;
                     //iteramos hasta esta en el dato que es mayor al que vamos a ingresar
-                    while (j.getYear() > aux.getDato().getYear()) {
+                    while (u.getId() > aux.getDato().getId()) {
                         aux = aux.getNext();
                     }
-                    Nodo temp = new Nodo(j);
+                    Nodo temp = new Nodo(u);
                     temp.setNext(aux);
                     temp.setBack(aux.getBack());
 
@@ -103,13 +95,13 @@ public class ListaDobleCircular {
         JOptionPane.showMessageDialog(null, "El juego NO existe");
         return false;
     }
-
-    public void modifica(String nombre, int year) {
+    /*
+    public void modifica(int id) {
         Nodo aux = cabeza;
 
         if (cabeza != null) {
             //verificamos que el dato no este en la cabeza
-            if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && cabeza.getDato().getYear() == year) {
+            if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && cabeza.getDato().getYear() == id) {
                 //pedimos nuevo dato
                 String nuevaPlataforma = JOptionPane.showInputDialog("Ingrese la nueva plataforma para el dato:\n " + aux.getDato().toString());
                 //asignamos y mostramos
@@ -119,7 +111,7 @@ public class ListaDobleCircular {
                 //si no es la cabeza, iteramos y hacemos el mismo procesos
                 aux = aux.getNext();
                 while (aux != cabeza) {
-                    if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && aux.getDato().getYear() == year) {
+                    if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && aux.getDato().getYear() == id) {
                         String nuevaPlataforma = JOptionPane.showInputDialog("Ingrese la nueva plataforma para el dato:\n " + aux.getDato().toString());
                         aux.getDato().setPlataforma(nuevaPlataforma);
                         JOptionPane.showMessageDialog(null, "Se modficó el dato por el siguiente:\n " + aux.getDato().toString());
@@ -132,7 +124,8 @@ public class ListaDobleCircular {
         }
 
     }
-
+    */
+    /*
     public void elimina(String nombre, int year) {
         Nodo aux = cabeza;
 
@@ -161,45 +154,5 @@ public class ListaDobleCircular {
 
         }
     }
-
-    public String imprimeDescendente() {
-        //hacemos un toString y aprovechamos el getback para iterat alreves
-        Nodo aux = ultimo;
-        String msj = "";
-
-        if (cabeza != null) {
-            msj += ultimo.getDato().toString();
-            aux = aux.getBack();
-            while (aux != ultimo) {
-                msj += aux.getDato().toString();
-                aux = aux.getBack();
-            }
-        } else {
-
-        }
-        return msj;
-    }
-
-    public void cuentaNombres(String nombre) {
-        Nodo aux = cabeza;
-        int cantidad = 0;
-
-        //cada vez que se encuente en match sumamos el contador y al final mostramos el resultado
-        if (cabeza != null) {
-            if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim())) {
-                cantidad++;
-            }
-            aux = aux.getNext();
-            while (aux != cabeza) {
-                if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre)) {
-                    cantidad++;
-                }
-                aux = aux.getNext();
-            }
-        } else {
-            //vacia
-        }
-
-        JOptionPane.showMessageDialog(null, "El nombre " + nombre + " aparece un total de " + cantidad + " veces.");
-    }
+    */
 }

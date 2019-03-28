@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectofinal.Estructuras.Cola;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ulacit
- */
 public class Cola {
 
     private Nodo frente, ultimo;
@@ -64,10 +55,10 @@ public class Cola {
     public Boolean encuentra(int year) {
         //aux se convierte en el frente de la cola
         Nodo aux = frente;
-        int yearDato = aux.getDato().getYear();
+        int id = aux.getDato().getId();
         //empezamos a iterar hasta que aux sea nulo
         while (aux != null) {
-            if (year == yearDato) {
+            if (year == id) {
                 //retornamos true con la informacion que estamos buscando
                 JOptionPane.showMessageDialog(null, "Se encontro el registro " + aux.getDato().toString());
                 return true;
@@ -87,7 +78,7 @@ public class Cola {
         //la variable eliminado nos va a controlar las iteraciones
         boolean eliminado = false;
         while (eliminado == false) {
-            String modeloEncontrado = aux.getDato().getModelo().toUpperCase().trim();
+            String modeloEncontrado = aux.getDato().getAsignadolvl1().getNombre().toUpperCase().trim();
             if (modelo.toUpperCase().trim().contains(modeloEncontrado)) {
                 //cuando encontramos la coincidencia del modelo le asignamos a auxAnterior que el dato de atras va a ser el dato que le sigue a aux
                 auxAnterior.setAtras(aux.getAtras());
@@ -101,32 +92,5 @@ public class Cola {
             //avanzamos al dato siguiente
             aux = aux.getAtras();
         }
-    }
-
-    public String ordenaAscendente() {
-        String msj = "";
-        Nodo aux = frente;
-        Nodo auxSiguiente = frente.getAtras();
-
-        boolean cambio = false;
-        while (auxSiguiente != null) {
-            int auxPasajeros = aux.getDato().getPasajeros();
-            int auxSiguientePasajeros = auxSiguiente.getDato().getPasajeros();
-            //while(cambio == false){
-
-            if (auxPasajeros < auxSiguientePasajeros) {
-                msj = msj + auxSiguiente.getDato().toString();
-                auxSiguiente = auxSiguiente.getAtras();
-
-            } else {
-                msj = msj + aux.getDato().toString();
-                auxSiguiente = auxSiguiente.getAtras();
-                //aux = aux.getAtras();
-            }
-
-            //}
-        }
-
-        return msj;
     }
 }

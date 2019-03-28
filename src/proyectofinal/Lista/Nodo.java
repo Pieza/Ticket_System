@@ -1,27 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectofinal.Lista;
+
+import proyectofinal.Objetos.Usuario;
 
 /**
  *
  * @author ulacit
  */
 public class Nodo {
-    private Juego dato;
+    private Usuario dato;
     private Nodo next, back;
 
-    public Nodo(Juego dato) {
+    public Nodo(Usuario dato) {
         this.dato = dato;
     }
 
-    public Juego getDato() {
+    public Usuario getDato() {
         return dato;
     }
 
-    public void setDato(Juego dato) {
+    public void setDato(Usuario dato) {
         this.dato = dato;
     }
 
