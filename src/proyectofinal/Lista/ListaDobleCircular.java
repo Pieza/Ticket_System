@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Lista;
+package proyectofinal.Lista;
 
+import proyectofinal.Lista.Nodo;
 import javax.swing.JOptionPane;
 
 /**
