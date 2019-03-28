@@ -102,7 +102,6 @@ fileVector.add(new Vector(Arrays.asList(new String[]{"row2 col1", "row2 col2"}))
         // TODO add your handling code here:
         if (validarDatos()) {
             if (Data.LISTA_USUARIOS.login(TxtUsuario.getText(), TxtContrasena.getText())) {
-                InformacionUsuario.usuario = TxtUsuario.getText();
                 ListaTickets listaTickets = new ListaTickets();
                 listaTickets.show();
                 this.hide();

@@ -5,10 +5,12 @@
  */
 package proyectofinal.Utilidades;
 
+import proyectofinal.Objetos.Usuario;
+
 /**
  *
  * @author ulacit
  */
 public class InformacionUsuario {
-    public static String usuario = "";
+    public static Usuario usuario = null;
 }

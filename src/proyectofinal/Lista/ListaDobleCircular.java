@@ -1,7 +1,9 @@
 package proyectofinal.Lista;
 
+import Vistas.InformacionTickets;
 import javax.swing.JOptionPane;
 import proyectofinal.Objetos.Usuario;
+import proyectofinal.Utilidades.InformacionUsuario;
 
 
 public class ListaDobleCircular {
@@ -75,6 +77,7 @@ public class ListaDobleCircular {
             //comparamos que el dato este en la cabeza
             if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && cabeza.getDato().getPassword().trim().equalsIgnoreCase(password.trim())) {
                 //JOptionPane.showMessageDialog(null, "El juego existe");
+                InformacionUsuario.usuario = cabeza.getDato();
                 return true;
             } else {
                 //si no es cabeza iteramos el siguiente para entrar al metodo
@@ -83,6 +86,7 @@ public class ListaDobleCircular {
                     //en el ciclo comparamos igual
                     if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && aux.getDato().getPassword().trim().equalsIgnoreCase(password.trim())) {
                         //JOptionPane.showMessageDialog(null, "El juego existe");
+                        InformacionUsuario.usuario = aux.getDato();
                         return true;
                     }
                     aux = aux.getNext();
