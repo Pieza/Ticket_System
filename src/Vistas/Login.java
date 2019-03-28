@@ -6,6 +6,10 @@
 package Vistas;
 
 import javax.swing.JOptionPane;
+import proyectofinal.Enums.NivelSoporte;
+import proyectofinal.Objetos.Administrador;
+import proyectofinal.Objetos.Cliente;
+import proyectofinal.Utilidades.Data;
 
 /**
  *
@@ -17,6 +21,12 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_3, "Jose", "Ulloa", "jose@mail.com", "123", 1));
+        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_3, "Alejandro", "Salguero", "alejandro@mail.com", "123", 2));
+        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_2, "Carlos", "Espinosa", "carlos@mail.com", "123", 3));
+        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_1, "Martir", "Canales", "martir@mail.com", "123", 4));
+        Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5));
+        Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Luis", "Marin", "luis@mail.com", "123", 6));
         initComponents();
     }
 

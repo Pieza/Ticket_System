@@ -2,10 +2,6 @@ package proyectofinal.Objetos;
 
 import proyectofinal.Enums.EstadoTickete;
 
-/**
- *
- * @author ulacit
- */
 public class Ticket {
     private int id;
     private Usuario creadoPor;
