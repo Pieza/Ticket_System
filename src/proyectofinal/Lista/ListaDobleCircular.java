@@ -68,21 +68,21 @@ public class ListaDobleCircular {
         return msj;
     }
 
-    public boolean existe(String nombre) {
+    public boolean login(String nombre, String password) {
         Nodo aux = cabeza;
 
         if (cabeza != null) {
             //comparamos que el dato este en la cabeza
-            if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim())) {
-                JOptionPane.showMessageDialog(null, "El juego existe");
+            if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && cabeza.getDato().getPassword().trim().equalsIgnoreCase(password.trim())) {
+                //JOptionPane.showMessageDialog(null, "El juego existe");
                 return true;
             } else {
                 //si no es cabeza iteramos el siguiente para entrar al metodo
                 aux = aux.getNext();
                 while (aux != cabeza) {
                     //en el ciclo comparamos igual
-                    if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim())) {
-                        JOptionPane.showMessageDialog(null, "El juego existe");
+                    if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && aux.getDato().getPassword().trim().equalsIgnoreCase(password.trim())) {
+                        //JOptionPane.showMessageDialog(null, "El juego existe");
                         return true;
                     }
                     aux = aux.getNext();
@@ -92,7 +92,7 @@ public class ListaDobleCircular {
             //vacia
         }
 
-        JOptionPane.showMessageDialog(null, "El juego NO existe");
+        JOptionPane.showMessageDialog(null, "El usuario no existe");
         return false;
     }
     /*
