@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import proyectofinal.Utilidades.InformacionUsuario;
+
 /**
  *
  * @author ulacit
@@ -16,6 +18,7 @@ public class ListaTickets extends javax.swing.JFrame {
      */
     public ListaTickets() {
         initComponents();
+        LblUsuarioLogueado.setText(InformacionUsuario.usuario);
     }
 
     /**

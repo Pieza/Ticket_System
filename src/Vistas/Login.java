@@ -10,6 +10,7 @@ import proyectofinal.Enums.NivelSoporte;
 import proyectofinal.Objetos.Administrador;
 import proyectofinal.Objetos.Cliente;
 import proyectofinal.Utilidades.Data;
+import proyectofinal.Utilidades.InformacionUsuario;
 
 /**
  *
@@ -17,6 +18,12 @@ import proyectofinal.Utilidades.Data;
  */
 public class Login extends javax.swing.JFrame {
 
+    /*
+    Vector fileVector = new Vector();
+fileVector.add(new Vector(Arrays.asList(new String[]{"row1 col1", "row1 col2"})));
+fileVector.add(new Vector(Arrays.asList(new String[]{"row2 col1", "row2 col2"})));
+    
+     */
     /**
      * Creates new form Login
      */
@@ -93,8 +100,13 @@ public class Login extends javax.swing.JFrame {
 
     private void BtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarActionPerformed
         // TODO add your handling code here:
-        if(validarDatos()){
-            
+        if (validarDatos()) {
+            if (Data.LISTA_USUARIOS.login(TxtUsuario.getText(), TxtContrasena.getText())) {
+                InformacionUsuario.usuario = TxtUsuario.getText();
+                ListaTickets listaTickets = new ListaTickets();
+                listaTickets.show();
+                this.hide();
+            }
         }
     }//GEN-LAST:event_BtnIngresarActionPerformed
 
