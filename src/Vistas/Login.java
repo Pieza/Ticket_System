@@ -6,11 +6,13 @@
 package Vistas;
 
 import javax.swing.JOptionPane;
+import proyectofinal.Enums.EstadoTickete;
 import proyectofinal.Enums.NivelSoporte;
+import proyectofinal.Estructuras.Cola.Nodo;
 import proyectofinal.Objetos.Administrador;
 import proyectofinal.Objetos.Cliente;
+import proyectofinal.Objetos.Ticket;
 import proyectofinal.Utilidades.Data;
-import proyectofinal.Utilidades.InformacionUsuario;
 
 /**
  *
@@ -18,12 +20,7 @@ import proyectofinal.Utilidades.InformacionUsuario;
  */
 public class Login extends javax.swing.JFrame {
 
-    /*
-    Vector fileVector = new Vector();
-fileVector.add(new Vector(Arrays.asList(new String[]{"row1 col1", "row1 col2"})));
-fileVector.add(new Vector(Arrays.asList(new String[]{"row2 col1", "row2 col2"})));
-    
-     */
+
     /**
      * Creates new form Login
      */
@@ -34,7 +31,13 @@ fileVector.add(new Vector(Arrays.asList(new String[]{"row2 col1", "row2 col2"}))
         Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_1, "Martir", "Canales", "martir@mail.com", "123", 4));
         Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5));
         Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Luis", "Marin", "luis@mail.com", "123", 6));
+
         this.setLocationRelativeTo(null);
+
+        Data.TICKETES.encola(new Nodo(new Ticket(1, new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5), 
+                null, null, new Administrador(NivelSoporte.LVL_3, "Jose", "Ulloa", "jose@mail.com", "123", 1),
+                "mae aja", null, null, EstadoTickete.COMPLETADO)));
+
         initComponents();
     }
 

@@ -5,6 +5,10 @@
  */
 package Vistas;
 
+import java.util.Arrays;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import proyectofinal.Utilidades.Data;
 import proyectofinal.Utilidades.InformacionUsuario;
 
 /**
@@ -18,10 +22,33 @@ public class ListaTickets extends javax.swing.JFrame {
      */
     public ListaTickets() {
         initComponents();
+
         this.setLocationRelativeTo(null);
+
+        cargarTicketes();
+
         LblUsuarioLogueado.setText(InformacionUsuario.usuario.getNombre()+ " " + InformacionUsuario.usuario.getApellidos());
     }
-
+    
+    private void cargarTicketes(){
+        // se extrae la lista de ticketes del usuario usando el id
+        String[] listaTicketes = Data.TICKETES.extrae(InformacionUsuario.usuario.getId());
+        
+        Vector fileVector = new Vector();
+        for(String ticket : listaTicketes){
+           fileVector.add(new Vector(Arrays.asList(ticket.toString().split(",") ))); 
+        }
+        
+        Vector headings = new Vector();
+        headings.add("Id");
+        headings.add("Descripción");
+        headings.add("Estado" );
+        headings.add("Cliente" );
+        
+        DefaultTableModel model = new DefaultTableModel(fileVector, headings);
+        TableTickets.setModel(model);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

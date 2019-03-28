@@ -82,7 +82,7 @@ public class Cola {
         Nodo aux = frente;
         String resultado = "";
         while (aux != null) {
-            if(aux.getDato().getAsignadolvl1().getId() == idUsuario){
+            if(aux.getDato().getAsignadolvl3().getId() == idUsuario){
                 resultado += aux.getDato() + ";";
             }
             //avanzamos al dato siguiente
