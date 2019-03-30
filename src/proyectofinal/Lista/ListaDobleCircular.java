@@ -2,6 +2,7 @@ package proyectofinal.Lista;
 
 import Vistas.InformacionTickets;
 import javax.swing.JOptionPane;
+import proyectofinal.Objetos.Ticket;
 import proyectofinal.Objetos.Usuario;
 import proyectofinal.Utilidades.InformacionUsuario;
 
@@ -99,6 +100,7 @@ public class ListaDobleCircular {
         JOptionPane.showMessageDialog(null, "El usuario no existe");
         return false;
     }
+    
     /*
     public void modifica(int id) {
         Nodo aux = cabeza;

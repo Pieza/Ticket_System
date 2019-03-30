@@ -8,6 +8,7 @@ package Vistas;
 import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import proyectofinal.Objetos.Ticket;
 import proyectofinal.Utilidades.Data;
 import proyectofinal.Utilidades.InformacionUsuario;
 
@@ -20,6 +21,7 @@ public class ListaTickets extends javax.swing.JFrame {
     /**
      * Creates new form ListaTickets
      */
+    
     public ListaTickets() {
         initComponents();
 
@@ -27,28 +29,29 @@ public class ListaTickets extends javax.swing.JFrame {
 
         cargarTicketes();
 
-        LblUsuarioLogueado.setText(InformacionUsuario.usuario.getNombre()+ " " + InformacionUsuario.usuario.getApellidos());
+        LblUsuarioLogueado.setText(InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos());
     }
-    
-    private void cargarTicketes(){
+
+    private void cargarTicketes() {
         // se extrae la lista de ticketes del usuario usando el id
         String[] listaTicketes = Data.TICKETES.extrae(InformacionUsuario.usuario.getId());
-        
+
         Vector fileVector = new Vector();
-        for(String ticket : listaTicketes){
-           fileVector.add(new Vector(Arrays.asList(ticket.toString().split(",") ))); 
+        for (String ticket : listaTicketes) {
+            fileVector.add(new Vector(Arrays.asList(ticket.toString().split(","))));
         }
-        
+
         Vector headings = new Vector();
         headings.add("Id");
         headings.add("Descripción");
-        headings.add("Estado" );
-        headings.add("Cliente" );
-        
+        headings.add("Estado");
+        headings.add("Cliente");
+
         DefaultTableModel model = new DefaultTableModel(fileVector, headings);
         TableTickets.setModel(model);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,6 +85,11 @@ public class ListaTickets extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        TableTickets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableTicketsMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(TableTickets);
@@ -121,6 +129,15 @@ public class ListaTickets extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TableTicketsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableTicketsMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) TableTickets.getModel();
+        int filaSeleccionada = TableTickets.getSelectedRow();
+        InformacionTickets info = new InformacionTickets();
+        info.id = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
+        info.show(); 
+    }//GEN-LAST:event_TableTicketsMouseClicked
 
     /**
      * @param args the command line arguments

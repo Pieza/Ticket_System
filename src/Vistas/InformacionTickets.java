@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import proyectofinal.Objetos.Ticket;
+import proyectofinal.Utilidades.Data;
+
 /**
  *
  * @author ulacit
@@ -14,9 +17,19 @@ public class InformacionTickets extends javax.swing.JFrame {
     /**
      * Creates new form InformacionTickets
      */
+    
+    public int id;
+    
+    
     public InformacionTickets() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Ticket ticket = Data.TICKETES.busquedaTicketPorID(id);
+        TxtIdTicket.setText(Integer.toString(ticket.getId()));
+        TxtDescripcion.setText(ticket.getDescripcion());
+        TxtEmailCliente.setText(ticket.getCreadoPor().getCorreo());
+        TxtNombreCliente.setText(ticket.getCreadoPor().getNombre() + " " + ticket.getCreadoPor().getApellidos());
+        TxtHistorialCaso.setText(ticket.getHistorial());
     }
 
     /**

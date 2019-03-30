@@ -53,23 +53,20 @@ public class Cola {
         return msj;
     }
 
-    public Boolean encuentra(int year) {
+    public Ticket busquedaTicketPorID(int id) {
         //aux se convierte en el frente de la cola
         Nodo aux = frente;
-        int id = aux.getDato().getId();
         //empezamos a iterar hasta que aux sea nulo
         while (aux != null) {
-            if (year == id) {
+            if (aux.getDato().getId() == id) {
                 //retornamos true con la informacion que estamos buscando
-                JOptionPane.showMessageDialog(null, "Se encontro el registro " + aux.getDato().toString());
-                return true;
+                return aux.getDato();
             }
             //si es el ultimo dato aux se iguala a nulo para terminar el ciclo
             aux = aux.getAtras();
         }
-
-        JOptionPane.showMessageDialog(null, "No se encontraron datos del año: " + year);
-        return false;
+        JOptionPane.showMessageDialog(null, "No se encontraron datos del ticket: " + id);
+        return null;
     }
 
     /**

@@ -34,7 +34,7 @@ public class Login extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
 
-        Data.TICKETES.encola(new Nodo(new Ticket(1, new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5), 
+        Data.TICKETES.encola(new Nodo(new Ticket(0, new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5), 
                 null, null, new Administrador(NivelSoporte.LVL_3, "Jose", "Ulloa", "jose@mail.com", "123", 1),
                 "mae aja", null, null, EstadoTickete.COMPLETADO)));
 
