@@ -1,8 +1,8 @@
-package proyectofinal.Utilidades;
+package proyectofinal.utilidades;
 
-import proyectofinal.Estructuras.Arbol.Arbol;
-import proyectofinal.Estructuras.Cola.Cola;
-import proyectofinal.Lista.ListaDobleCircular;
+import proyectofinal.estructuras.arbol.Arbol;
+import proyectofinal.estructuras.cola.Cola;
+import proyectofinal.estructuras.lista.ListaDobleCircular;
 
 public class Data {
     public static final ListaDobleCircular LISTA_USUARIOS = new ListaDobleCircular();

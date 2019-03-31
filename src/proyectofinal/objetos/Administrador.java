@@ -1,6 +1,6 @@
-package proyectofinal.Objetos;
+package proyectofinal.objetos;
 
-import proyectofinal.Enums.NivelSoporte;
+import proyectofinal.enums.NivelSoporte;
 
 
 public class Administrador extends Usuario{

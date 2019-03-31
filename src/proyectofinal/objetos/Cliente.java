@@ -1,4 +1,4 @@
-package proyectofinal.Objetos;
+package proyectofinal.objetos;
 
 
 public class Cliente extends Usuario{

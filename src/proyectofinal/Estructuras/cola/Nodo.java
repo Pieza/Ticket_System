@@ -1,6 +1,6 @@
-package proyectofinal.Estructuras.Cola;
+package proyectofinal.estructuras.cola;
 
-import proyectofinal.Objetos.Ticket;
+import proyectofinal.objetos.Ticket;
 
 public class Nodo {
     private Ticket dato;

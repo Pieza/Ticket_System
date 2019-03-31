@@ -5,7 +5,7 @@
  */
 package proyectofinal;
 
-import Vistas.Login;
+import proyectofinal.vistas.Login;
 
 /**
  *

@@ -1,4 +1,4 @@
-package proyectofinal.Estructuras.Arbol;
+package proyectofinal.estructuras.arbol;
 
 public class Arbol {
 

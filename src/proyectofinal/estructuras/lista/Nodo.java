@@ -1,6 +1,6 @@
-package proyectofinal.Lista;
+package proyectofinal.estructuras.lista;
 
-import proyectofinal.Objetos.Usuario;
+import proyectofinal.objetos.Usuario;
 
 /**
  *

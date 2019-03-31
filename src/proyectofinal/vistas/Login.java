@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package proyectofinal.vistas;
 
 import javax.swing.JOptionPane;
-import proyectofinal.Enums.EstadoTickete;
-import proyectofinal.Enums.NivelSoporte;
-import proyectofinal.Estructuras.Cola.Nodo;
-import proyectofinal.Objetos.Administrador;
-import proyectofinal.Objetos.Cliente;
-import proyectofinal.Objetos.Ticket;
-import proyectofinal.Utilidades.Data;
+import proyectofinal.enums.EstadoTickete;
+import proyectofinal.enums.NivelSoporte;
+import proyectofinal.estructuras.cola.Nodo;
+import proyectofinal.objetos.Administrador;
+import proyectofinal.objetos.Cliente;
+import proyectofinal.objetos.Ticket;
+import proyectofinal.utilidades.Data;
 
 /**
  *

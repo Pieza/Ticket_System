@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectofinal.Utilidades;
+package proyectofinal.utilidades;
 
-import proyectofinal.Objetos.Usuario;
+import proyectofinal.objetos.Usuario;
 
 /**
  *

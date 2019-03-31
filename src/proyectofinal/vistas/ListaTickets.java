@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package proyectofinal.vistas;
 
 import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import proyectofinal.Objetos.Ticket;
-import proyectofinal.Utilidades.Data;
-import proyectofinal.Utilidades.InformacionUsuario;
+import proyectofinal.objetos.Ticket;
+import proyectofinal.utilidades.Data;
+import proyectofinal.utilidades.InformacionUsuario;
 
 /**
  *

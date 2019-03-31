@@ -1,7 +1,7 @@
-package proyectofinal.Estructuras.Cola;
+package proyectofinal.estructuras.cola;
 
 import javax.swing.JOptionPane;
-import proyectofinal.Objetos.Ticket;
+import proyectofinal.objetos.Ticket;
 
 public class Cola {
 

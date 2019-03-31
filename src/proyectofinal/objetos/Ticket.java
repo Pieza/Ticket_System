@@ -1,6 +1,6 @@
-package proyectofinal.Objetos;
+package proyectofinal.objetos;
 
-import proyectofinal.Enums.EstadoTickete;
+import proyectofinal.enums.EstadoTickete;
 
 public class Ticket {
     private int id;

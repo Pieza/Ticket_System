@@ -1,10 +1,10 @@
-package proyectofinal.Lista;
+package proyectofinal.estructuras.lista;
 
-import Vistas.InformacionTickets;
+import proyectofinal.vistas.InformacionTickets;
 import javax.swing.JOptionPane;
-import proyectofinal.Objetos.Ticket;
-import proyectofinal.Objetos.Usuario;
-import proyectofinal.Utilidades.InformacionUsuario;
+import proyectofinal.objetos.Ticket;
+import proyectofinal.objetos.Usuario;
+import proyectofinal.utilidades.InformacionUsuario;
 
 
 public class ListaDobleCircular {

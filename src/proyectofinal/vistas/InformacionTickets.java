@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package proyectofinal.vistas;
 
-import proyectofinal.Objetos.Ticket;
-import proyectofinal.Utilidades.Data;
+import proyectofinal.objetos.Ticket;
+import proyectofinal.utilidades.Data;
 
 /**
  *
@@ -52,7 +52,7 @@ public class InformacionTickets extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         TxttelefonoCliente = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        CmbxEstadoCaso = new javax.swing.JComboBox<>();
+        CmbxEstadoCaso = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtNuevaActualizacion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -84,7 +84,7 @@ public class InformacionTickets extends javax.swing.JFrame {
 
         jLabel6.setText("Estado del caso:");
 
-        CmbxEstadoCaso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbxEstadoCaso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         TxtNuevaActualizacion.setColumns(20);
         TxtNuevaActualizacion.setRows(5);
