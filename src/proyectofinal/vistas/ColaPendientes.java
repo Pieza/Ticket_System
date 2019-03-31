@@ -5,6 +5,8 @@
  */
 package proyectofinal.vistas;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jose Andres Ulloa
