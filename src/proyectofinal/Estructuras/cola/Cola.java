@@ -102,4 +102,22 @@ public class Cola {
         // retorna null si no encuentra tickets
         return resultado.split(";");
     }
+    
+    public boolean actualizarTicket(int id, String nuevaActualizacion, EstadoTickete estado) {
+        //aux se convierte en el frente de la cola
+        Nodo aux = frente;
+        //empezamos a iterar hasta que aux sea nulo
+        while (aux != null) {
+            if (aux.getDato().getId() == id) {
+                aux.getDato().setNuevaActualizacion(nuevaActualizacion);
+                aux.getDato().setHistorial(nuevaActualizacion + "\n" + aux.getDato().getHistorial());
+                aux.getDato().setEstado(estado);
+                //retornamos true para indicar que se actualizó correctamente
+                return true;
+            }
+            //si es el ultimo dato aux se iguala a nulo para terminar el ciclo
+            aux = aux.getAtras();
+        }
+        return false;
+    }
 }

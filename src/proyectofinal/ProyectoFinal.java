@@ -7,7 +7,6 @@ package proyectofinal;
 
 import proyectofinal.enums.EstadoTickete;
 import proyectofinal.enums.NivelSoporte;
-import proyectofinal.estructuras.cola.Nodo;
 import proyectofinal.objetos.Administrador;
 import proyectofinal.objetos.Cliente;
 import proyectofinal.objetos.Ticket;
@@ -31,8 +30,8 @@ public class ProyectoFinal {
         Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5));
         Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Luis", "Marin", "luis@mail.com", "123", 6));
         // new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5)
-        Data.TICKETES.encola(new Ticket(0, (Cliente) Data.LISTA_USUARIOS.extrae(5), null, null, (Administrador) Data.LISTA_USUARIOS.extrae(1),
-            "Ayuda", null, null, EstadoTickete.PENDIENTE));
+        Data.TICKETES.encola(new Ticket(0, (Cliente) Data.LISTA_USUARIOS.extrae(5), "Ayuda"));
+        
         Login login = new Login();
         login.show();
     }

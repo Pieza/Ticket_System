@@ -16,16 +16,16 @@ public class Ticket {
 
     public Ticket(){}
     
-    public Ticket(int id, Cliente creadoPor, Administrador asignadolvl1, Administrador asignadolvl2, Administrador asignadolvl3, String descripcion, String historial, String nuevaActualizacion, EstadoTickete estado) {
+    public Ticket(int id, Cliente creadoPor, String descripcion) {
         this.id = id;
         this.creadoPor = creadoPor;
-        this.asignadolvl1 = asignadolvl1;
-        this.asignadolvl2 = asignadolvl2;
-        this.asignadolvl3 = asignadolvl3;
+        this.asignadolvl1 = null;
+        this.asignadolvl2 = null;
+        this.asignadolvl3 = null;
         this.descripcion = descripcion;
-        this.historial = historial;
-        this.nuevaActualizacion = nuevaActualizacion;
-        this.estado = estado;
+        this.historial = "";
+        this.nuevaActualizacion = "";
+        this.estado = EstadoTickete.SIN_ASIGNAR; // por defecto
     }
     
     public int getId() {

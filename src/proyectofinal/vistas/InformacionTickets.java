@@ -5,6 +5,11 @@
  */
 package proyectofinal.vistas;
 
+import java.util.Arrays;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import proyectofinal.enums.EstadoTickete;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.Data;
 
@@ -31,7 +36,21 @@ public class InformacionTickets extends javax.swing.JFrame {
         this.id = id;
         actualizarVista();
     }
-    
+    private void actualizarTickete(){
+        try {
+            EstadoTickete estado = EstadoTickete.valueOf(CmbxEstadoCaso.getSelectedItem().toString());
+            System.out.println(estado);
+            if(Data.TICKETES.actualizarTicket(id, TxtNuevaActualizacion.getText(), estado)) {
+                JOptionPane.showMessageDialog(null, "Tickete actualizado correctamente!");
+                actualizarVista();    
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el tickete");
+            }
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar el tickete");
+        }
+
+    }
     private void actualizarVista(){
         // extrae el tickete por id
         ticket = Data.TICKETES.busquedaTicketPorID(id);
@@ -40,6 +59,23 @@ public class InformacionTickets extends javax.swing.JFrame {
         TxtEmailCliente.setText(ticket.getCreadoPor().getCorreo());
         TxtNombreCliente.setText(ticket.getCreadoPor().getNombre() + " " + ticket.getCreadoPor().getApellidos());
         TxtHistorialCaso.setText(ticket.getHistorial());
+        
+        // se elige el estado del tickete en el combobox
+        switch(ticket.getEstado()){
+            case EN_PROGRESO:
+                CmbxEstadoCaso.setSelectedIndex(1);
+                break;
+            case ESPERANDO_RESPUESTA:
+                CmbxEstadoCaso.setSelectedIndex(2);
+                break;
+            case COMPLETADO:
+                CmbxEstadoCaso.setSelectedIndex(3);
+                break;
+            default:
+                CmbxEstadoCaso.setSelectedIndex(0);
+                break; 
+        }
+        
     }
 
     /**
@@ -94,7 +130,7 @@ public class InformacionTickets extends javax.swing.JFrame {
 
         jLabel6.setText("Estado del caso:");
 
-        CmbxEstadoCaso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbxEstadoCaso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PENDIENTE", "EN_PROGRESO", "ESPERANDO_RESPUESTA", "COMPLETADO" }));
 
         TxtNuevaActualizacion.setColumns(20);
         TxtNuevaActualizacion.setRows(5);
@@ -106,6 +142,11 @@ public class InformacionTickets extends javax.swing.JFrame {
         jScrollPane2.setViewportView(TxtHistorialCaso);
 
         BtnActualizarCaso.setText("Actualizar Caso");
+        BtnActualizarCaso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnActualizarCasoActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Nueva Actualización:");
 
@@ -193,6 +234,10 @@ public class InformacionTickets extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnActualizarCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarCasoActionPerformed
+        actualizarTickete();
+    }//GEN-LAST:event_BtnActualizarCasoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

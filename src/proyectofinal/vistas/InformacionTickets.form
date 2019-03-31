@@ -185,10 +185,10 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="PENDIENTE"/>
+            <StringItem index="1" value="EN_PROGRESO"/>
+            <StringItem index="2" value="ESPERANDO_RESPUESTA"/>
+            <StringItem index="3" value="COMPLETADO"/>
           </StringArray>
         </Property>
       </Properties>
@@ -231,6 +231,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Actualizar Caso"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnActualizarCasoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
