@@ -4,7 +4,7 @@ import proyectofinal.enums.EstadoTickete;
 
 public class Ticket {
     private int id;
-    private Usuario creadoPor;
+    private Cliente creadoPor;
     private Administrador asignadolvl1, asignadolvl2, asignadolvl3;
     private String descripcion, historial, nuevaActualizacion;
     private EstadoTickete estado;
@@ -16,7 +16,7 @@ public class Ticket {
 
     public Ticket(){}
     
-    public Ticket(int id, Usuario creadoPor, Administrador asignadolvl1, Administrador asignadolvl2, Administrador asignadolvl3, String descripcion, String historial, String nuevaActualizacion, EstadoTickete estado) {
+    public Ticket(int id, Cliente creadoPor, Administrador asignadolvl1, Administrador asignadolvl2, Administrador asignadolvl3, String descripcion, String historial, String nuevaActualizacion, EstadoTickete estado) {
         this.id = id;
         this.creadoPor = creadoPor;
         this.asignadolvl1 = asignadolvl1;
@@ -40,7 +40,7 @@ public class Ticket {
         return creadoPor;
     }
 
-    public void setCreadoPor(Usuario creadoPor) {
+    public void setCreadoPor(Cliente creadoPor) {
         this.creadoPor = creadoPor;
     }
 

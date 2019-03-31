@@ -34,7 +34,7 @@ public class ListaTickets extends javax.swing.JFrame {
 
     private void cargarTicketes() {
         // se extrae la lista de ticketes del usuario usando el id
-        String[] listaTicketes = Data.TICKETES.extrae(InformacionUsuario.usuario.getId());
+        String[] listaTicketes = Data.TICKETES.extraePendientes(InformacionUsuario.usuario.getId());
 
         Vector fileVector = new Vector();
         for (String ticket : listaTicketes) {
@@ -134,45 +134,11 @@ public class ListaTickets extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) TableTickets.getModel();
         int filaSeleccionada = TableTickets.getSelectedRow();
-        InformacionTickets info = new InformacionTickets();
-        info.id = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
+        int id = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
+        InformacionTickets info = new InformacionTickets(id);
         info.show(); 
     }//GEN-LAST:event_TableTicketsMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListaTickets().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblUsuarioLogueado;

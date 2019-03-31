@@ -1,6 +1,7 @@
 package proyectofinal.estructuras.cola;
 
 import javax.swing.JOptionPane;
+import proyectofinal.enums.EstadoTickete;
 import proyectofinal.objetos.Ticket;
 
 public class Cola {
@@ -8,7 +9,8 @@ public class Cola {
     private Nodo frente, ultimo;
 
     //Añade datos a la cola
-    public void encola(Nodo n) {
+    public void encola(Ticket t) {
+        Nodo n = new Nodo(t);
         if (frente == null) {
             //si es el primer dato que se ingresa frente y ultimo son el mismo dato
             frente = n;
@@ -19,7 +21,7 @@ public class Cola {
     }
 
     //Elimina datos
-    public Nodo atiende() {
+    public Ticket atiende() {
         //cremos un auxiliar para guardar el dato
         Nodo aux = frente;
         //validamos que frente tenga datos
@@ -33,8 +35,9 @@ public class Cola {
                 //si es nulo significa que era el ultimo dato, por lo que la lista esta vacia y borramos ultimo
                 ultimo = null;
             }
+            return aux.getDato();
         }
-        return aux;
+        return null;
     }
 
     //imprime
@@ -74,14 +77,24 @@ public class Cola {
      * @param idUsuario
      * @return 
      */
-    public String[] extrae(int idUsuario) {
+    public String[] extraePendientes(int idUsuario) {
         //creamos las variables aix que va a ser el frente de la cola
         Nodo aux = frente;
         String resultado = "";
         while (aux != null) {
-            if(aux.getDato().getAsignadolvl3().getId() == idUsuario){
-                resultado += aux.getDato() + ";";
+            // se excluyen los completados
+            if(aux.getDato().getEstado() != EstadoTickete.COMPLETADO){
+                // se compara por id de usuario asignado
+                if(aux.getDato().getAsignadolvl1() != null && aux.getDato().getAsignadolvl1().getId() == idUsuario)
+                    resultado += aux.getDato() + ";";
+
+                if(aux.getDato().getAsignadolvl2() != null && aux.getDato().getAsignadolvl2().getId() == idUsuario)
+                    resultado += aux.getDato() + ";";
+
+                if(aux.getDato().getAsignadolvl3() != null && aux.getDato().getAsignadolvl3().getId() == idUsuario)
+                    resultado += aux.getDato() + ";";
             }
+            
             //avanzamos al dato siguiente
             aux = aux.getAtras();
         }

@@ -5,6 +5,7 @@
  */
 package proyectofinal.vistas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import proyectofinal.enums.EstadoTickete;
 import proyectofinal.enums.NivelSoporte;
@@ -25,19 +26,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
-        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_3, "Jose", "Ulloa", "jose@mail.com", "123", 1));
-        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_3, "Alejandro", "Salguero", "alejandro@mail.com", "123", 2));
-        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_2, "Carlos", "Espinosa", "carlos@mail.com", "123", 3));
-        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_1, "Martir", "Canales", "martir@mail.com", "123", 4));
-        Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5));
-        Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Luis", "Marin", "luis@mail.com", "123", 6));
-
         this.setLocationRelativeTo(null);
-
-        Data.TICKETES.encola(new Nodo(new Ticket(0, new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5), 
-                null, null, new Administrador(NivelSoporte.LVL_3, "Jose", "Ulloa", "jose@mail.com", "123", 1),
-                "mae aja", null, null, EstadoTickete.COMPLETADO)));
-
         initComponents();
     }
 
@@ -60,12 +49,24 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario:");
 
+        TxtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TxtUsuarioKeyPressed(evt);
+            }
+        });
+
         jLabel2.setText("Contraseña:");
 
         BtnIngresar.setText("Ingresar");
         BtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnIngresarActionPerformed(evt);
+            }
+        });
+
+        TxtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TxtContrasenaKeyPressed(evt);
             }
         });
 
@@ -103,15 +104,18 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarActionPerformed
-        // TODO add your handling code here:
-        if (validarDatos()) {
-            if (Data.LISTA_USUARIOS.login(TxtUsuario.getText(), TxtContrasena.getText())) {
-                ListaTickets listaTickets = new ListaTickets();
-                listaTickets.show();
-                this.hide();
-            }
-        }
+        iniciar();
     }//GEN-LAST:event_BtnIngresarActionPerformed
+
+    private void TxtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtContrasenaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            iniciar();
+    }//GEN-LAST:event_TxtContrasenaKeyPressed
+
+    private void TxtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtUsuarioKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            iniciar();
+    }//GEN-LAST:event_TxtUsuarioKeyPressed
 
     /**
      * @param args the command line arguments
@@ -147,8 +151,17 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-
-    public boolean validarDatos() {
+    private void iniciar(){
+        if (validarDatos()) {
+            if (Data.LISTA_USUARIOS.login(TxtUsuario.getText(), TxtContrasena.getText())) {
+                ListaTickets listaTickets = new ListaTickets();
+                listaTickets.show();
+                this.dispose();
+            }
+        }
+    }
+    
+    private boolean validarDatos() {
 
         if (TxtContrasena.getText().isEmpty() && TxtUsuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Po favor no dejar campos sin llenar");

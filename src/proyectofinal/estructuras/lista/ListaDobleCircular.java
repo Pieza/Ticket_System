@@ -1,8 +1,6 @@
 package proyectofinal.estructuras.lista;
 
-import proyectofinal.vistas.InformacionTickets;
 import javax.swing.JOptionPane;
-import proyectofinal.objetos.Ticket;
 import proyectofinal.objetos.Usuario;
 import proyectofinal.utilidades.InformacionUsuario;
 
@@ -101,6 +99,25 @@ public class ListaDobleCircular {
         return false;
     }
     
+    public Usuario extrae(int id) {
+        Nodo aux = cabeza;
+        if (cabeza != null) {
+            //verificamos que el dato no este en la cabeza
+            if (cabeza.getDato().getId() == id) 
+                return cabeza.getDato();
+            else {
+                //si no es la cabeza, iteramos y hacemos el mismo procesos
+                aux = aux.getNext();
+                while (aux != cabeza) {
+                    if (aux.getDato().getId() == id) 
+                        return aux.getDato();
+                    aux = aux.getNext();
+                }
+            }
+        } 
+        
+        return null;
+    }
     /*
     public void modifica(int id) {
         Nodo aux = cabeza;
