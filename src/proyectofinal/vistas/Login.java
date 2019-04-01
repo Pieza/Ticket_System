@@ -14,6 +14,7 @@ import proyectofinal.objetos.Administrador;
 import proyectofinal.objetos.Cliente;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.Data;
+import proyectofinal.utilidades.InformacionUsuario;
 
 /**
  *
@@ -21,12 +22,24 @@ import proyectofinal.utilidades.Data;
  */
 public class Login extends javax.swing.JFrame {
 
-
     /**
      * Creates new form Login
      */
     public Login() {
         this.setLocationRelativeTo(null);
+        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_3, "Jose", "Ulloa", "jose@mail.com", "123", 1));
+        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_3, "Alejandro", "Salguero", "alejandro@mail.com", "123", 2));
+        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_2, "Carlos", "Espinosa", "carlos@mail.com", "123", 3));
+        Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_1, "Martir", "Canales", "martir@mail.com", "123", 4));
+        Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5));
+        Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Luis", "Marin", "luis@mail.com", "123", 6));
+
+        this.setLocationRelativeTo(null);
+
+        Data.TICKETES.encola(new Ticket(0, new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5), "Errores varios en el sistema X"));
+        Data.TICKETES.encola(new Ticket(0, new Cliente(88888888, "Romeo", "Santos", "santosromeo@mail.com", "123", 5), "Errores varios en el sistema X"));
+        Data.TICKETES.encola(new Ticket(0, new Cliente(88888888, "Marta", "Ureña", "marurena@mail.com", "123", 5), "Errores varios en el sistema X"));
+
         initComponents();
     }
 
@@ -108,13 +121,15 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnIngresarActionPerformed
 
     private void TxtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtContrasenaKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             iniciar();
+        }
     }//GEN-LAST:event_TxtContrasenaKeyPressed
 
     private void TxtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtUsuarioKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             iniciar();
+        }
     }//GEN-LAST:event_TxtUsuarioKeyPressed
 
     /**
@@ -151,20 +166,26 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    private void iniciar(){
+
+    private void iniciar() {
         if (validarDatos()) {
             if (Data.LISTA_USUARIOS.login(TxtUsuario.getText(), TxtContrasena.getText())) {
-                ListaTickets listaTickets = new ListaTickets();
-                listaTickets.show();
-                this.dispose();
+                //validamos que vista va a tener el usuario dependiendo de si es un cliente o un admin
+                if (InformacionUsuario.usuario instanceof Cliente) {
+
+                } else {
+                    ListaTickets listaTickets = new ListaTickets();
+                    listaTickets.show();
+                    this.dispose();
+                }
             }
         }
     }
-    
+
     private boolean validarDatos() {
 
         if (TxtContrasena.getText().isEmpty() && TxtUsuario.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Po favor no dejar campos sin llenar");
+            JOptionPane.showMessageDialog(null, "Por favor no dejar campos sin llenar");
             TxtContrasena.requestFocus();
             return false;
         }

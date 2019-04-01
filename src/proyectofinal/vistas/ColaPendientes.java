@@ -7,10 +7,6 @@ package proyectofinal.vistas;
 
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Jose Andres Ulloa
- */
 public class ColaPendientes extends javax.swing.JFrame {
 
     /**
