@@ -37,8 +37,8 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         Data.TICKETES.encola(new Ticket(0, new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5), "Errores varios en el sistema X"));
-        Data.TICKETES.encola(new Ticket(0, new Cliente(88888888, "Romeo", "Santos", "santosromeo@mail.com", "123", 5), "Errores varios en el sistema X"));
-        Data.TICKETES.encola(new Ticket(0, new Cliente(88888888, "Marta", "Ureña", "marurena@mail.com", "123", 5), "Errores varios en el sistema X"));
+        Data.TICKETES.encola(new Ticket(1, new Cliente(88888888, "Romeo", "Santos", "santosromeo@mail.com", "123", 5), "Errores varios en el sistema X"));
+        Data.TICKETES.encola(new Ticket(2, new Cliente(88888888, "Marta", "Ureña", "marurena@mail.com", "123", 5), "Errores varios en el sistema X"));
 
         initComponents();
     }

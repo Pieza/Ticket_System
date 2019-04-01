@@ -7,6 +7,7 @@ package proyectofinal.vistas;
 
 import java.util.Arrays;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.Data;
@@ -21,7 +22,6 @@ public class ListaTickets extends javax.swing.JFrame {
     /**
      * Creates new form ListaTickets
      */
-    
     public ListaTickets() {
         initComponents();
 
@@ -52,6 +52,25 @@ public class ListaTickets extends javax.swing.JFrame {
 
     }
 
+    private void cargarTicketsSinAsignar() {
+        // se extrae la lista de ticketes del usuario usando el id
+        String[] listaTicketes = Data.TICKETES.extraeSinAsignar();
+
+        Vector fileVector = new Vector();
+        for (String ticket : listaTicketes) {
+            fileVector.add(new Vector(Arrays.asList(ticket.toString().split(","))));
+        }
+
+        Vector headings = new Vector();
+        headings.add("Id");
+        headings.add("Descripción");
+        headings.add("Estado");
+        headings.add("Cliente");
+
+        DefaultTableModel model = new DefaultTableModel(fileVector, headings);
+        TableTickets.setModel(model);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +84,8 @@ public class ListaTickets extends javax.swing.JFrame {
         TableTickets = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         LblUsuarioLogueado = new javax.swing.JLabel();
+        CmbxAsignacionTickets = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +121,20 @@ public class ListaTickets extends javax.swing.JFrame {
         LblUsuarioLogueado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         LblUsuarioLogueado.setText("\"\"");
 
+        CmbxAsignacionTickets.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Asignados a mi", "Sin asignar" }));
+        CmbxAsignacionTickets.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CmbxAsignacionTicketsItemStateChanged(evt);
+            }
+        });
+        CmbxAsignacionTickets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbxAsignacionTicketsActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Ver tickets:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,7 +147,10 @@ public class ListaTickets extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LblUsuarioLogueado)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CmbxAsignacionTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,8 +159,10 @@ public class ListaTickets extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(LblUsuarioLogueado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                    .addComponent(LblUsuarioLogueado)
+                    .addComponent(CmbxAsignacionTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -132,18 +172,38 @@ public class ListaTickets extends javax.swing.JFrame {
 
     private void TableTicketsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableTicketsMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) TableTickets.getModel();
-        int filaSeleccionada = TableTickets.getSelectedRow();
-        int id = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
-        InformacionTickets info = new InformacionTickets(id);
-        info.show(); 
+        try {
+            DefaultTableModel model = (DefaultTableModel) TableTickets.getModel();
+            int filaSeleccionada = TableTickets.getSelectedRow();
+            int id = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
+            InformacionTickets info = new InformacionTickets(id);
+            info.show();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Acción no válida");
+        }
     }//GEN-LAST:event_TableTicketsMouseClicked
+
+    private void CmbxAsignacionTicketsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CmbxAsignacionTicketsItemStateChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_CmbxAsignacionTicketsItemStateChanged
+
+    private void CmbxAsignacionTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbxAsignacionTicketsActionPerformed
+        // TODO add your handling code here:
+        if (CmbxAsignacionTickets.getSelectedItem().equals("Sin asignar")) {
+            cargarTicketsSinAsignar();
+        } else {
+            cargarTicketes();
+        }
+    }//GEN-LAST:event_CmbxAsignacionTicketsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox CmbxAsignacionTickets;
     private javax.swing.JLabel LblUsuarioLogueado;
     private javax.swing.JTable TableTickets;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
