@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import proyectofinal.enums.EstadoTickete;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.InformacionUsuario;
+import proyectofinal.utilidades.Utils;
 
 public class Cola {
 
@@ -133,7 +134,7 @@ public class Cola {
         while (aux != null) {
             if (aux.getDato().getId() == id) {
                 aux.getDato().setNuevaActualizacion(nuevaActualizacion);
-                String datosActualizacion = "***Actualizado por " + InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos() + " a las ";
+                String datosActualizacion = "\n***Actualizado por " + InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos() + " a las " + Utils.obtenerFechaActual();
                 aux.getDato().setHistorial(datosActualizacion.toUpperCase() + "\n" + nuevaActualizacion + "\n" + aux.getDato().getHistorial());
                 aux.getDato().setEstado(estado);
                 //retornamos true para indicar que se actualizó correctamente
