@@ -1,9 +1,9 @@
 package proyectofinal.estructuras.lista;
 
 import javax.swing.JOptionPane;
+import proyectofinal.objetos.Administrador;
 import proyectofinal.objetos.Usuario;
 import proyectofinal.utilidades.InformacionUsuario;
-
 
 public class ListaDobleCircular {
 
@@ -16,7 +16,7 @@ public class ListaDobleCircular {
             cabeza = new Nodo(u);
             ultimo = cabeza;
         } else {
-            if (u.getId()< cabeza.getDato().getId()) {
+            if (u.getId() < cabeza.getDato().getId()) {
                 //como el dato se va a guardar a la izquierda entonces lo creamos como la izquierda de cabeza
                 //por lo que decimos que es el back de cabeza
                 cabeza.setBack(new Nodo(u));
@@ -26,7 +26,7 @@ public class ListaDobleCircular {
                 cabeza = cabeza.getBack();
             } else {
                 //preguntamos si el nuevo juego es mayor a ultimo para agregarlo al final
-                if (u.getId()> ultimo.getDato().getId()) {
+                if (u.getId() > ultimo.getDato().getId()) {
                     ultimo.setNext(new Nodo(u));
                     ultimo.getNext().setBack(ultimo);
                     ultimo = ultimo.getNext();
@@ -69,6 +69,27 @@ public class ListaDobleCircular {
         return msj;
     }
 
+    public String[] obtieneUsuarios() {
+        String msj = "";
+        Nodo aux = cabeza;
+
+        if (cabeza != null) {
+            if (cabeza.getDato() instanceof Administrador) {
+                msj += cabeza.getDato().toString() + ";";
+                aux = aux.getNext();
+            }
+            while (aux != cabeza) {
+                if (aux.getDato() instanceof Administrador) {
+                    msj += aux.getDato().toString() + ";";
+                    aux = aux.getNext();
+                }
+            }
+        } else {
+            //lista vacia
+        }
+        return msj.split(";");
+    }
+
     public boolean login(String nombre, String password) {
         Nodo aux = cabeza;
 
@@ -98,84 +119,85 @@ public class ListaDobleCircular {
         JOptionPane.showMessageDialog(null, "El usuario no existe");
         return false;
     }
-    
+
     public Usuario extrae(int id) {
         Nodo aux = cabeza;
         if (cabeza != null) {
             //verificamos que el dato no este en la cabeza
-            if (cabeza.getDato().getId() == id) 
+            if (cabeza.getDato().getId() == id) {
                 return cabeza.getDato();
-            else {
+            } else {
                 //si no es la cabeza, iteramos y hacemos el mismo procesos
                 aux = aux.getNext();
                 while (aux != cabeza) {
-                    if (aux.getDato().getId() == id) 
+                    if (aux.getDato().getId() == id) {
                         return aux.getDato();
+                    }
                     aux = aux.getNext();
                 }
             }
-        } 
-        
+        }
+
         return null;
     }
     /*
-    public void modifica(int id) {
-        Nodo aux = cabeza;
+     public void modifica(int id) {
+     Nodo aux = cabeza;
 
-        if (cabeza != null) {
-            //verificamos que el dato no este en la cabeza
-            if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && cabeza.getDato().getYear() == id) {
-                //pedimos nuevo dato
-                String nuevaPlataforma = JOptionPane.showInputDialog("Ingrese la nueva plataforma para el dato:\n " + aux.getDato().toString());
-                //asignamos y mostramos
-                cabeza.getDato().setPlataforma(nuevaPlataforma);
-                JOptionPane.showMessageDialog(null, "Se modficó el dato por el siguiente:\n " + aux.getDato().toString());
-            } else {
-                //si no es la cabeza, iteramos y hacemos el mismo procesos
-                aux = aux.getNext();
-                while (aux != cabeza) {
-                    if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && aux.getDato().getYear() == id) {
-                        String nuevaPlataforma = JOptionPane.showInputDialog("Ingrese la nueva plataforma para el dato:\n " + aux.getDato().toString());
-                        aux.getDato().setPlataforma(nuevaPlataforma);
-                        JOptionPane.showMessageDialog(null, "Se modficó el dato por el siguiente:\n " + aux.getDato().toString());
-                    }
-                    aux = aux.getNext();
-                }
-            }
-        } else {
-            //vaica
-        }
+     if (cabeza != null) {
+     //verificamos que el dato no este en la cabeza
+     if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && cabeza.getDato().getYear() == id) {
+     //pedimos nuevo dato
+     String nuevaPlataforma = JOptionPane.showInputDialog("Ingrese la nueva plataforma para el dato:\n " + aux.getDato().toString());
+     //asignamos y mostramos
+     cabeza.getDato().setPlataforma(nuevaPlataforma);
+     JOptionPane.showMessageDialog(null, "Se modficó el dato por el siguiente:\n " + aux.getDato().toString());
+     } else {
+     //si no es la cabeza, iteramos y hacemos el mismo procesos
+     aux = aux.getNext();
+     while (aux != cabeza) {
+     if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && aux.getDato().getYear() == id) {
+     String nuevaPlataforma = JOptionPane.showInputDialog("Ingrese la nueva plataforma para el dato:\n " + aux.getDato().toString());
+     aux.getDato().setPlataforma(nuevaPlataforma);
+     JOptionPane.showMessageDialog(null, "Se modficó el dato por el siguiente:\n " + aux.getDato().toString());
+     }
+     aux = aux.getNext();
+     }
+     }
+     } else {
+     //vaica
+     }
 
-    }
-    */
+     }
+     */
     /*
-    public void elimina(String nombre, int year) {
-        Nodo aux = cabeza;
+     public void elimina(String nombre, int year) {
+     Nodo aux = cabeza;
 
-        if (cabeza != null) {
-            //verificamos que el dato sea la cabeza
-            if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && cabeza.getDato().getYear() == year) {
-                cabeza = cabeza.getNext();//decimos que cabeza es el siguiente
-                //hacemos la lista circular
-                ultimo.setNext(cabeza);
-                cabeza.setBack(ultimo);
-            } else {
-                //si no es cabeza iteramos al sigueinte dato
-                aux = aux.getNext();
-                while (aux != cabeza) {
-                    //comparamos
-                    if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && aux.getDato().getYear() == year) {
-                        //le asignamos el dato anterior que estamos al siguiente de nosotros
-                        aux.getNext().setBack(aux.getBack());
-                        //le asignamos al dato anterios de nosotros el siguiente de nosotros
-                        aux.getBack().setNext(aux.getNext());
-                    }
-                    aux = aux.getNext();
-                }
-            }
-        } else {
+     if (cabeza != null) {
+     //verificamos que el dato sea la cabeza
+     if (cabeza.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && cabeza.getDato().getYear() == year) {
+     cabeza = cabeza.getNext();//decimos que cabeza es el siguiente
+     //hacemos la lista circular
+     ultimo.setNext(cabeza);
+     cabeza.setBack(ultimo);
+     } else {
+     //si no es cabeza iteramos al sigueinte dato
+     aux = aux.getNext();
+     while (aux != cabeza) {
+     //comparamos
+     if (aux.getDato().getNombre().trim().equalsIgnoreCase(nombre.trim()) && aux.getDato().getYear() == year) {
+     //le asignamos el dato anterior que estamos al siguiente de nosotros
+     aux.getNext().setBack(aux.getBack());
+     //le asignamos al dato anterios de nosotros el siguiente de nosotros
+     aux.getBack().setNext(aux.getNext());
+     }
+     aux = aux.getNext();
+     }
+     }
+     } else {
 
-        }
-    }
-    */
+     }
+     }
+     */
 }

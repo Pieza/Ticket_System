@@ -6,6 +6,7 @@
 package proyectofinal.vistas;
 
 import java.util.Arrays;
+import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -33,12 +34,22 @@ public class InformacionTickets extends javax.swing.JFrame {
         if (estadoTicket.equalsIgnoreCase("SIN_ASIGNAR")) {
             CmbxUsuarios.show(true);
             LblAsignarCasoA.show(true);
+            //cargarUsuarioCombobox();
         } else {
             CmbxUsuarios.show(false);
             LblAsignarCasoA.show(false);
         }
         this.id = id;
         actualizarVista();
+    }
+
+    private void cargarUsuarioCombobox() {
+        String[] listaUsuarios = Data.LISTA_USUARIOS.obtieneUsuarios();
+
+        //Vector fileVector = new Vector();
+        for (String usuario : listaUsuarios) {
+            CmbxUsuarios.addItem(usuario);
+        }
     }
 
     private void actualizarTickete() {
