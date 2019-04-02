@@ -176,7 +176,7 @@ public class ListaTickets extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) TableTickets.getModel();
             int filaSeleccionada = TableTickets.getSelectedRow();
             int id = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
-            InformacionTickets info = new InformacionTickets(id);
+            InformacionTickets info = new InformacionTickets(id, model.getValueAt(filaSeleccionada, 2).toString());
             info.show();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Acción no válida");

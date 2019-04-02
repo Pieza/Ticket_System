@@ -22,36 +22,42 @@ public class InformacionTickets extends javax.swing.JFrame {
     /**
      * Creates new form InformacionTickets
      */
-    
     private int id;
     private Ticket ticket;
-    
-    
-    public InformacionTickets(int id) {
+
+    public InformacionTickets(int id, String estadoTicket) {
         // inicializar componentes de la vista
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        
+        if (estadoTicket.equalsIgnoreCase("SIN_ASIGNAR")) {
+            CmbxUsuarios.show(true);
+            LblAsignarCasoA.show(true);
+        } else {
+            CmbxUsuarios.show(false);
+            LblAsignarCasoA.show(false);
+        }
         this.id = id;
         actualizarVista();
     }
-    private void actualizarTickete(){
+
+    private void actualizarTickete() {
         try {
             EstadoTickete estado = EstadoTickete.valueOf(CmbxEstadoCaso.getSelectedItem().toString());
             System.out.println(estado);
-            if(Data.TICKETES.actualizarTicket(id, TxtNuevaActualizacion.getText(), estado)) {
+            if (Data.TICKETES.actualizarTicket(id, TxtNuevaActualizacion.getText(), estado)) {
                 JOptionPane.showMessageDialog(null, "Tickete actualizado correctamente!");
-                actualizarVista();    
+                actualizarVista();
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo actualizar el tickete");
             }
-        } catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No se pudo actualizar el tickete");
         }
 
     }
-    private void actualizarVista(){
+
+    private void actualizarVista() {
         // extrae el tickete por id
         ticket = Data.TICKETES.busquedaTicketPorID(id);
         TxtIdTicket.setText(Integer.toString(ticket.getId()));
@@ -59,9 +65,9 @@ public class InformacionTickets extends javax.swing.JFrame {
         TxtEmailCliente.setText(ticket.getCreadoPor().getCorreo());
         TxtNombreCliente.setText(ticket.getCreadoPor().getNombre() + " " + ticket.getCreadoPor().getApellidos());
         TxtHistorialCaso.setText(ticket.getHistorial());
-        
+
         // se elige el estado del tickete en el combobox
-        switch(ticket.getEstado()){
+        switch (ticket.getEstado()) {
             case EN_PROGRESO:
                 CmbxEstadoCaso.setSelectedIndex(1);
                 break;
@@ -73,9 +79,9 @@ public class InformacionTickets extends javax.swing.JFrame {
                 break;
             default:
                 CmbxEstadoCaso.setSelectedIndex(0);
-                break; 
+                break;
         }
-        
+
     }
 
     /**
@@ -105,6 +111,8 @@ public class InformacionTickets extends javax.swing.JFrame {
         TxtHistorialCaso = new javax.swing.JTextArea();
         BtnActualizarCaso = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        LblAsignarCasoA = new javax.swing.JLabel();
+        CmbxUsuarios = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -130,7 +138,7 @@ public class InformacionTickets extends javax.swing.JFrame {
 
         jLabel6.setText("Estado del caso:");
 
-        CmbxEstadoCaso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PENDIENTE", "EN_PROGRESO", "ESPERANDO_RESPUESTA", "COMPLETADO" }));
+        CmbxEstadoCaso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PENDIENTE", "EN_PROGRESO", "ESPERANDO_RESPUESTA", "COMPLETADO", "SIN_ASIGNAR" }));
 
         TxtNuevaActualizacion.setColumns(20);
         TxtNuevaActualizacion.setRows(5);
@@ -150,6 +158,8 @@ public class InformacionTickets extends javax.swing.JFrame {
 
         jLabel7.setText("Nueva Actualización:");
 
+        LblAsignarCasoA.setText("Asignar caso a:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,39 +172,38 @@ public class InformacionTickets extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(284, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TxtNombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(TxtDescripcion))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LblAsignarCasoA)
+                        .addGap(18, 18, 18)
+                        .addComponent(CmbxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(BtnActualizarCaso))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(22, 22, 22)
-                                .addComponent(TxtIdTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(CmbxEstadoCaso, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TxtEmailCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                    .addComponent(TxttelefonoCliente))
-                                .addGap(129, 129, 129)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane1))))
-                        .addGap(20, 20, 20))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnActualizarCaso))
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(22, 22, 22)
+                        .addComponent(TxtIdTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(CmbxEstadoCaso, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TxtEmailCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(TxttelefonoCliente))
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,18 +217,21 @@ public class InformacionTickets extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LblAsignarCasoA)
+                        .addComponent(CmbxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(TxtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(TxtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(TxtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TxtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -243,6 +255,8 @@ public class InformacionTickets extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnActualizarCaso;
     private javax.swing.JComboBox<String> CmbxEstadoCaso;
+    private javax.swing.JComboBox<String> CmbxUsuarios;
+    private javax.swing.JLabel LblAsignarCasoA;
     private javax.swing.JTextField TxtDescripcion;
     private javax.swing.JTextField TxtEmailCliente;
     private javax.swing.JTextArea TxtHistorialCaso;
