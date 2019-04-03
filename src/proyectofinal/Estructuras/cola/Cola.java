@@ -2,7 +2,6 @@ package proyectofinal.estructuras.cola;
 
 import javax.swing.JOptionPane;
 import proyectofinal.enums.EstadoTickete;
-import proyectofinal.enums.NivelSoporte;
 import proyectofinal.objetos.Administrador;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.InformacionUsuario;
@@ -11,9 +10,12 @@ import proyectofinal.utilidades.Utils;
 public class Cola {
 
     private Nodo frente, ultimo;
+    private int ultimoIdInsertado = 0;
 
     //Añade datos a la cola
     public void encola(Ticket t) {
+        ultimoIdInsertado++;
+        t.setId(ultimoIdInsertado);
         Nodo n = new Nodo(t);
         if (frente == null) {
             //si es el primer dato que se ingresa frente y ultimo son el mismo dato
@@ -159,7 +161,7 @@ public class Cola {
                 datosActualizacion = datosActualizacion.toUpperCase();
 
                 aux.getDato().setEstado(estado);
-                datosActualizacion += "\nEstado -> " + estado;
+                datosActualizacion += "\nESTADO -> " + estado;
                 // se cambia el asignado dependiendo el nivel de soporte
                 switch (asignado.getNivel()) {
                     case LVL_1:
@@ -178,8 +180,8 @@ public class Cola {
                         aux.getDato().setAsignadolvl3(asignado);
                         break;
                 }
-
-                aux.getDato().setHistorial(datosActualizacion.toUpperCase() + "\nComentario -> " + nuevaActualizacion + "\n" + aux.getDato().getHistorial());
+                datosActualizacion += "\nASIGNADO -> " + asignado;
+                aux.getDato().setHistorial(datosActualizacion.toUpperCase() + "\nCOMENTARIO -> " + nuevaActualizacion + "\n" + aux.getDato().getHistorial());
                 //retornamos true para indicar que se actualizó correctamente
                 return true;
             }

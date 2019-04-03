@@ -6,6 +6,7 @@
 package proyectofinal.vistas;
 
 import javax.swing.JOptionPane;
+import proyectofinal.objetos.Cliente;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.Data;
 import proyectofinal.utilidades.InformacionUsuario;
@@ -112,7 +113,9 @@ public class AgregarNuevoTicket extends javax.swing.JFrame {
     private void BtnCrearTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearTicketActionPerformed
         // TODO add your handling code here:
         if (validarDatos()) {
-            //Data.TICKETES.encola(new Ticket(0,InformacionUsuario.usuario,txtDescripcion.getText()));
+            Data.TICKETES.encola(new Ticket((Cliente)InformacionUsuario.usuario,txtDescripcion.getText()));
+            JOptionPane.showMessageDialog(null, "Tickete creado correctamente!");
+            this.dispose();
         }
     }//GEN-LAST:event_BtnCrearTicketActionPerformed
 
@@ -123,41 +126,6 @@ public class AgregarNuevoTicket extends javax.swing.JFrame {
         }
 
         return true;
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarNuevoTicket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarNuevoTicket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarNuevoTicket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarNuevoTicket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarNuevoTicket().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

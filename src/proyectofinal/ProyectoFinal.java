@@ -29,8 +29,10 @@ public class ProyectoFinal {
         Data.LISTA_USUARIOS.inserta(new Administrador(NivelSoporte.LVL_1, "Martir", "Canales", "martir@mail.com", "123", 4));
         Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5));
         Data.LISTA_USUARIOS.inserta(new Cliente(88888888, "Luis", "Marin", "luis@mail.com", "123", 6));
-        // new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5)
-        Data.TICKETES.encola(new Ticket(0, (Cliente) Data.LISTA_USUARIOS.extrae(5), "Ayuda"));
+
+        Data.TICKETES.encola(new Ticket(new Cliente(88888888, "Mario", "Torres", "mario@mail.com", "123", 5), "Errores varios en el sistema X"));
+        Data.TICKETES.encola(new Ticket(new Cliente(88888888, "Romeo", "Santos", "santosromeo@mail.com", "123", 5), "Errores varios en el sistema X"));
+        Data.TICKETES.encola(new Ticket(new Cliente(88888888, "Marta", "Ureña", "marurena@mail.com", "123", 5), "Errores varios en el sistema X"));
         
         Login login = new Login();
         login.show();

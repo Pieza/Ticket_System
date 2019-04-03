@@ -16,7 +16,7 @@ public class Ticket {
 
     public Ticket(){}
     
-    public Ticket(int id, Cliente creadoPor, String descripcion) {
+    public Ticket(Cliente creadoPor, String descripcion) {
         this.id = id;
         this.creadoPor = creadoPor;
         this.asignadolvl1 = null;
