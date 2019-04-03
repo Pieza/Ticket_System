@@ -2,6 +2,8 @@ package proyectofinal.estructuras.cola;
 
 import javax.swing.JOptionPane;
 import proyectofinal.enums.EstadoTickete;
+import proyectofinal.enums.NivelSoporte;
+import proyectofinal.objetos.Administrador;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.InformacionUsuario;
 import proyectofinal.utilidades.Utils;
@@ -127,7 +129,7 @@ public class Cola {
         return resultado.split(";");
     }
 
-    public boolean actualizarTicket(int id, String nuevaActualizacion, EstadoTickete estado) {
+    public boolean actualizarTicket(int id, String nuevaActualizacion, EstadoTickete estado, Administrador asignado) {
         //aux se convierte en el frente de la cola
         Nodo aux = frente;
         //empezamos a iterar hasta que aux sea nulo
@@ -135,8 +137,30 @@ public class Cola {
             if (aux.getDato().getId() == id) {
                 aux.getDato().setNuevaActualizacion(nuevaActualizacion);
                 String datosActualizacion = "\n***Actualizado por " + InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos() + " a las " + Utils.obtenerFechaActual();
-                aux.getDato().setHistorial(datosActualizacion.toUpperCase() + "\n" + nuevaActualizacion + "\n" + aux.getDato().getHistorial());
+                datosActualizacion = datosActualizacion.toUpperCase();
+                
                 aux.getDato().setEstado(estado);
+                datosActualizacion += "\nEstado -> " + estado;
+                // se cambia el asignado dependiendo el nivel de soporte
+                switch(asignado.getNivel()){
+                    case LVL_1:
+                        aux.getDato().setAsignadolvl1(asignado);
+                        aux.getDato().setAsignadolvl2(null);
+                        aux.getDato().setAsignadolvl3(null);
+                        break;
+                    case LVL_2:
+                        aux.getDato().setAsignadolvl1(null);
+                        aux.getDato().setAsignadolvl2(asignado);
+                        aux.getDato().setAsignadolvl3(null);
+                        break;
+                    case LVL_3:
+                        aux.getDato().setAsignadolvl1(null);
+                        aux.getDato().setAsignadolvl2(null);
+                        aux.getDato().setAsignadolvl3(asignado);
+                        break;
+                }
+                
+                aux.getDato().setHistorial(datosActualizacion.toUpperCase() + "\nComentario -> " + nuevaActualizacion + "\n" + aux.getDato().getHistorial());
                 //retornamos true para indicar que se actualizó correctamente
                 return true;
             }

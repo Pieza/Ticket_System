@@ -23,7 +23,7 @@ public class Administrador extends Usuario{
 
     @Override
     public String toString() {
-        return getNombre() + " " + getApellidos() + " + " + nivel.toString();
+        return "[" + getId() + "] " + getNombre() + " " + getApellidos() + " - " + nivel.toString();
     }
     
     

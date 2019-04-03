@@ -61,7 +61,7 @@ public class InformacionTickets extends javax.swing.JFrame {
         // si hay asignado se selecciona en el combo box
         if(asignado != null){
             for (int i = 0; i < listaUsuarios.length; i++) {
-                if(listaUsuarios[i].contains(asignado.getNombre()))
+                if(listaUsuarios[i].matches("[" + asignado.getId() + "].*"))
                     CmbxUsuarios.setSelectedIndex(i);
                 
             }
@@ -71,9 +71,16 @@ public class InformacionTickets extends javax.swing.JFrame {
 
     private void actualizarTickete() {
         try {
+            // se obtiene el usuario seleccionado
+            String strUser = CmbxUsuarios.getSelectedItem().toString();
+            int id = Integer.parseInt(strUser.substring(1, strUser.indexOf("]")));
+            
+            // se obtiene el estado seleccionado
             EstadoTickete estado = EstadoTickete.valueOf(CmbxEstadoCaso.getSelectedItem().toString());
-            System.out.println(estado);
-            if (Data.TICKETES.actualizarTicket(id, TxtNuevaActualizacion.getText(), estado)) {
+            Administrador asignado = (Administrador) Data.LISTA_USUARIOS.extrae(id);
+            
+            // se actualiza el ticket
+            if (Data.TICKETES.actualizarTicket(id, TxtNuevaActualizacion.getText(), estado, asignado)) {
                 JOptionPane.showMessageDialog(null, "Tickete actualizado correctamente!");
                 actualizarVista();
             } else {
