@@ -20,8 +20,11 @@ public class Administrador extends Usuario{
     public void setNivel(NivelSoporte nivel) {
         this.nivel = nivel;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return getNombre() + " " + getApellidos() + " + " + nivel.toString();
+    }
     
     
 }

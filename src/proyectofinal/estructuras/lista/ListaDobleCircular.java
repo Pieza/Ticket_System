@@ -69,7 +69,7 @@ public class ListaDobleCircular {
         return msj;
     }
 
-    public String[] obtieneUsuarios() {
+    public String[] obtieneAdministradores() {
         String msj = "";
         Nodo aux = cabeza;
 
@@ -79,16 +79,18 @@ public class ListaDobleCircular {
                 aux = aux.getNext();
             }
             while (aux != cabeza) {
-                if (aux.getDato() instanceof Administrador) {
+                if (aux.getDato() instanceof Administrador) 
                     msj += aux.getDato().toString() + ";";
-                    aux = aux.getNext();
-                }
+                
+                aux = aux.getNext();
             }
         } else {
             //lista vacia
         }
         return msj.split(";");
     }
+    
+    
 
     public boolean login(String nombre, String password) {
         Nodo aux = cabeza;
@@ -130,9 +132,9 @@ public class ListaDobleCircular {
                 //si no es la cabeza, iteramos y hacemos el mismo procesos
                 aux = aux.getNext();
                 while (aux != cabeza) {
-                    if (aux.getDato().getId() == id) {
+                    if (aux.getDato().getId() == id) 
                         return aux.getDato();
-                    }
+                    
                     aux = aux.getNext();
                 }
             }

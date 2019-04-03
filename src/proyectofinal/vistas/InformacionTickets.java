@@ -11,6 +11,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import proyectofinal.enums.EstadoTickete;
+import proyectofinal.objetos.Administrador;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.Data;
 
@@ -40,15 +41,31 @@ public class InformacionTickets extends javax.swing.JFrame {
             LblAsignarCasoA.show(false);
         }
         this.id = id;
+        
         actualizarVista();
     }
 
     private void cargarUsuarioCombobox() {
-        String[] listaUsuarios = Data.LISTA_USUARIOS.obtieneUsuarios();
+        String[] listaUsuarios = Data.LISTA_USUARIOS.obtieneAdministradores();
 
         //Vector fileVector = new Vector();
         for (String usuario : listaUsuarios) {
             CmbxUsuarios.addItem(usuario);
+        }
+        // se verifica si hay un asignado para el ticket
+        Administrador asignado = ticket.getAsignadolvl1() != null ? ticket.getAsignadolvl1()
+                : ticket.getAsignadolvl2() != null ? ticket.getAsignadolvl2() 
+                : ticket.getAsignadolvl3() != null ? ticket.getAsignadolvl3()
+                : null;
+        
+        // si hay asignado se selecciona en el combo box
+        if(asignado != null){
+            for (int i = 0; i < listaUsuarios.length; i++) {
+                if(listaUsuarios[i].contains(asignado.getNombre()))
+                    CmbxUsuarios.setSelectedIndex(i);
+                
+            }
+            
         }
     }
 
@@ -76,7 +93,7 @@ public class InformacionTickets extends javax.swing.JFrame {
         TxtEmailCliente.setText(ticket.getCreadoPor().getCorreo());
         TxtNombreCliente.setText(ticket.getCreadoPor().getNombre() + " " + ticket.getCreadoPor().getApellidos());
         TxtHistorialCaso.setText(ticket.getHistorial());
-
+        cargarUsuarioCombobox();
         // se elige el estado del tickete en el combobox
         switch (ticket.getEstado()) {
             case EN_PROGRESO:
@@ -226,12 +243,13 @@ public class InformacionTickets extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(CmbxEstadoCaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(LblAsignarCasoA)
-                        .addComponent(CmbxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CmbxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
