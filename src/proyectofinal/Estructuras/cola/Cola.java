@@ -111,6 +111,25 @@ public class Cola {
         return resultado.split(";");
     }
 
+    public String[] extraeTicketsPorCLiente(String nombreCliente, String apellidoCliente) {
+        //creamos las variables aix que va a ser el frente de la cola
+        Nodo aux = frente;
+        String resultado = "";
+        while (aux != null) {
+            // se excluyen los completados
+            if ((aux.getDato().getCreadoPor().getNombre().equalsIgnoreCase(nombreCliente) && (aux.getDato().getCreadoPor().getApellidos().equalsIgnoreCase(apellidoCliente)))) {
+                // se compara por id de usuario asignado
+                resultado += aux.getDato() + ";";
+            }
+
+            //avanzamos al dato siguiente
+            aux = aux.getAtras();
+        }
+
+        // retorna null si no encuentra tickets
+        return resultado.split(";");
+    }
+
     public String[] extraeSinAsignar() {
         //creamos las variables aix que va a ser el frente de la cola
         Nodo aux = frente;
@@ -138,11 +157,11 @@ public class Cola {
                 aux.getDato().setNuevaActualizacion(nuevaActualizacion);
                 String datosActualizacion = "\n***Actualizado por " + InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos() + " a las " + Utils.obtenerFechaActual();
                 datosActualizacion = datosActualizacion.toUpperCase();
-                
+
                 aux.getDato().setEstado(estado);
                 datosActualizacion += "\nEstado -> " + estado;
                 // se cambia el asignado dependiendo el nivel de soporte
-                switch(asignado.getNivel()){
+                switch (asignado.getNivel()) {
                     case LVL_1:
                         aux.getDato().setAsignadolvl1(asignado);
                         aux.getDato().setAsignadolvl2(null);
@@ -159,7 +178,7 @@ public class Cola {
                         aux.getDato().setAsignadolvl3(asignado);
                         break;
                 }
-                
+
                 aux.getDato().setHistorial(datosActualizacion.toUpperCase() + "\nComentario -> " + nuevaActualizacion + "\n" + aux.getDato().getHistorial());
                 //retornamos true para indicar que se actualizó correctamente
                 return true;

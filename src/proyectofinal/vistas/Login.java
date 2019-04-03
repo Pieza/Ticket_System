@@ -172,7 +172,9 @@ public class Login extends javax.swing.JFrame {
             if (Data.LISTA_USUARIOS.login(TxtUsuario.getText(), TxtContrasena.getText())) {
                 //validamos que vista va a tener el usuario dependiendo de si es un cliente o un admin
                 if (InformacionUsuario.usuario instanceof Cliente) {
-
+                    ListaTicketsCliente listaTicketsCliente = new ListaTicketsCliente();
+                    listaTicketsCliente.show();
+                    this.dispose();
                 } else {
                     ListaTickets listaTickets = new ListaTickets();
                     listaTickets.show();
