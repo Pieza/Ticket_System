@@ -102,6 +102,11 @@ public class ListaTicketsCliente extends javax.swing.JFrame {
         LblUsuarioLogueado.setText("\"\"");
 
         BtnIngresarNuevoTicket.setText("Nuevo Ticket");
+        BtnIngresarNuevoTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnIngresarNuevoTicketActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,6 +152,12 @@ public class ListaTicketsCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Acción no válida");
         }
     }//GEN-LAST:event_TableTicketsMouseClicked
+
+    private void BtnIngresarNuevoTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarNuevoTicketActionPerformed
+        // TODO add your handling code here:
+        AgregarNuevoTicket nuevo = new AgregarNuevoTicket();
+        nuevo.show();
+    }//GEN-LAST:event_BtnIngresarNuevoTicketActionPerformed
 
     /**
      * @param args the command line arguments

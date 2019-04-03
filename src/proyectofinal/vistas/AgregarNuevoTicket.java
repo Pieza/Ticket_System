@@ -21,6 +21,7 @@ public class AgregarNuevoTicket extends javax.swing.JFrame {
      */
     public AgregarNuevoTicket() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
