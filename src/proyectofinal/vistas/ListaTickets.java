@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.Data;
 import proyectofinal.utilidades.InformacionUsuario;
 
@@ -24,9 +23,7 @@ public class ListaTickets extends javax.swing.JFrame {
      */
     public ListaTickets() {
         initComponents();
-
         this.setLocationRelativeTo(null);
-
         cargarTicketes();
 
         LblUsuarioLogueado.setText(InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos());
@@ -86,8 +83,9 @@ public class ListaTickets extends javax.swing.JFrame {
         LblUsuarioLogueado = new javax.swing.JLabel();
         CmbxAsignacionTickets = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        BtnActualizar = new javax.swing.JButton();
+        BtnHistorial = new javax.swing.JButton();
         BtnLogOut = new javax.swing.JButton();
+        BtnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,10 +135,10 @@ public class ListaTickets extends javax.swing.JFrame {
 
         jLabel2.setText("Ver tickets:");
 
-        BtnActualizar.setText("Actualizar");
-        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
+        BtnHistorial.setText("Ver Historial");
+        BtnHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnActualizarActionPerformed(evt);
+                BtnHistorialActionPerformed(evt);
             }
         });
 
@@ -148,6 +146,13 @@ public class ListaTickets extends javax.swing.JFrame {
         BtnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnLogOutActionPerformed(evt);
+            }
+        });
+
+        BtnActualizar.setText("Actualizar");
+        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnActualizarActionPerformed(evt);
             }
         });
 
@@ -164,16 +169,20 @@ public class ListaTickets extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LblUsuarioLogueado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CmbxAsignacionTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BtnLogOut)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(672, Short.MAX_VALUE)
+                    .addComponent(BtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(20, 20, 20)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,14 +192,18 @@ public class ListaTickets extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(LblUsuarioLogueado)
                     .addComponent(CmbxAsignacionTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(BtnHistorial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnLogOut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(BtnActualizar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(124, 124, 124)
+                    .addComponent(BtnActualizar)
+                    .addContainerGap(328, Short.MAX_VALUE)))
         );
 
         pack();
@@ -219,10 +232,12 @@ public class ListaTickets extends javax.swing.JFrame {
         actualizarVentana();
     }//GEN-LAST:event_CmbxAsignacionTicketsActionPerformed
 
-    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
+    private void BtnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHistorialActionPerformed
         // TODO add your handling code here:
-        actualizarVentana();
-    }//GEN-LAST:event_BtnActualizarActionPerformed
+        HistorialTickets historial = new HistorialTickets();
+        this.dispose();
+        historial.show();
+    }//GEN-LAST:event_BtnHistorialActionPerformed
 
     private void actualizarVentana() {
         if (CmbxAsignacionTickets.getSelectedItem().equals("Sin asignar")) {
@@ -233,16 +248,21 @@ public class ListaTickets extends javax.swing.JFrame {
     }
 
     private void BtnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogOutActionPerformed
-        // TODO add your handling code here:
+
         Login login = new Login();
         InformacionUsuario.usuario = null;
         this.dispose();
         login.show();
     }//GEN-LAST:event_BtnLogOutActionPerformed
 
+    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
+        actualizarVentana();
+    }//GEN-LAST:event_BtnActualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnActualizar;
+    private javax.swing.JButton BtnHistorial;
     private javax.swing.JButton BtnLogOut;
     private javax.swing.JComboBox CmbxAsignacionTickets;
     private javax.swing.JLabel LblUsuarioLogueado;

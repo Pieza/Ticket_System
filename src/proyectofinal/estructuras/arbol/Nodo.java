@@ -1,22 +1,24 @@
 package proyectofinal.estructuras.arbol;
 
+import proyectofinal.objetos.Ticket;
+
 /**
  *
  * @author ulacit
  */
 public class Nodo {
-    private int dato;
+    private Ticket dato;
     private Nodo hijoIzq, hijoDer;
 
-    public Nodo(int dato) {
+    public Nodo(Ticket dato) {
         this.dato = dato;
     }
 
-    public int getDato() {
+    public Ticket getDato() {
         return dato;
     }
 
-    public void setDato(int dato) {
+    public void setDato(Ticket dato) {
         this.dato = dato;
     }
 

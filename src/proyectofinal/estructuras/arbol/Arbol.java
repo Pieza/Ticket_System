@@ -1,31 +1,33 @@
 package proyectofinal.estructuras.arbol;
 
+import proyectofinal.objetos.Ticket;
+
 public class Arbol {
 
     private Nodo raiz;
 
-    public void inserta(int num) {
+    public void inserta(Ticket ticket) {
         if (raiz == null) {
-            raiz = new Nodo(num);
+            raiz = new Nodo(ticket);
         } else {
-            insertaRecursivo(num, raiz);//mandamos raiz porque es la referencia del nivel que estamos
+            insertaRecursivo(ticket, raiz);//mandamos raiz porque es la referencia del nivel que estamos
         }
     }
 
-    private void insertaRecursivo(int num, Nodo n) {
-        if (num <= n.getDato()) {
+    private void insertaRecursivo(Ticket ticket, Nodo n) {
+        if (ticket.getId() <= n.getDato().getId()) {
             //insertamos a la izquierda
             if (n.getHijoIzq() == null) {
-                n.setHijoIzq(new Nodo(num));
+                n.setHijoIzq(new Nodo(ticket));
             } else {
-                insertaRecursivo(num, n.getHijoIzq());//le mandamos el hijoIzq porque es el nodo donde estamos
+                insertaRecursivo(ticket, n.getHijoIzq());//le mandamos el hijoIzq porque es el nodo donde estamos
             }
         } else {
             //insertamos a la derecha
             if (n.getHijoDer() == null) {
-                n.setHijoDer(new Nodo(num));
+                n.setHijoDer(new Nodo(ticket));
             } else {
-                insertaRecursivo(num, n.getHijoDer());//le mandamos el hijoDer
+                insertaRecursivo(ticket, n.getHijoDer());//le mandamos el hijoDer
             }
         }
     }
@@ -60,18 +62,22 @@ public class Arbol {
         }
     }
 
-    public void preOrden() {
+    public String[] preOrden() {
+        String result = "";
         if (raiz != null) {
             System.out.println("PreOrden");
-            preOrdenRecursivo(raiz);
+            result = preOrdenRecursivo(raiz);
         }
+        return result.split(";");
     }
 
-    private void preOrdenRecursivo(Nodo n) {
+    private String preOrdenRecursivo(Nodo n) {
+        String result = "";
         if (n != null) {
-            System.out.print(" " + n);
+            result += n + ";";
             preOrdenRecursivo(n.getHijoIzq());
             preOrdenRecursivo(n.getHijoDer());
         }
+        return result.equals("") ? result : result.substring(0, result.length() -1);
     }
 }

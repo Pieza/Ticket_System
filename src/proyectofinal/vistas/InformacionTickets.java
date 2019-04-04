@@ -92,7 +92,7 @@ public class InformacionTickets extends javax.swing.JFrame {
             }
             
             if(estado == EstadoTickete.COMPLETADO){
-                Data.HISTORIAL_TICKETES.inserta(ticket.getId());
+                Data.HISTORIAL_TICKETES.inserta(ticket);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No se pudo actualizar el tickete");
