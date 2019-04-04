@@ -5,10 +5,6 @@
  */
 package proyectofinal.vistas;
 
-import java.util.Arrays;
-import java.util.Vector;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import proyectofinal.enums.EstadoTickete;
 import proyectofinal.objetos.Administrador;
@@ -37,8 +33,8 @@ public class InformacionTickets extends javax.swing.JFrame {
             LblAsignarCasoA.show(true);
             //cargarUsuarioCombobox();
         } else {
-            CmbxUsuarios.show(false);
-            LblAsignarCasoA.show(false);
+            //CmbxUsuarios.show(false);
+            LblAsignarCasoA.setText("Reasignar a:");
         }
         this.id = id;
         
@@ -46,6 +42,7 @@ public class InformacionTickets extends javax.swing.JFrame {
     }
 
     private void cargarUsuarioCombobox() {
+        CmbxUsuarios.removeAllItems();
         String[] listaUsuarios = Data.LISTA_USUARIOS.obtieneAdministradores();
 
         //Vector fileVector = new Vector();
@@ -61,7 +58,7 @@ public class InformacionTickets extends javax.swing.JFrame {
         // si hay asignado se selecciona en el combo box
         if(asignado != null){
             for (int i = 0; i < listaUsuarios.length; i++) {
-                if(listaUsuarios[i].matches("[" + asignado.getId() + "].*"))
+                if(listaUsuarios[i].contains("[" + asignado.getId() + "]"))
                     CmbxUsuarios.setSelectedIndex(i);
                 
             }
@@ -80,7 +77,7 @@ public class InformacionTickets extends javax.swing.JFrame {
             Administrador asignado = (Administrador) Data.LISTA_USUARIOS.extrae(id);
             
             // se actualiza el ticket
-            if (Data.TICKETES.actualizarTicket(id, TxtNuevaActualizacion.getText(), estado, asignado)) {
+            if (Data.TICKETES.actualizarTicket(ticket.getId(), TxtNuevaActualizacion.getText(), estado, asignado)) {
                 JOptionPane.showMessageDialog(null, "Tickete actualizado correctamente!");
                 actualizarVista();
             } else {
@@ -89,11 +86,11 @@ public class InformacionTickets extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No se pudo actualizar el tickete");
         }
-
     }
 
     private void actualizarVista() {
         // extrae el tickete por id
+        TxtNuevaActualizacion.setText("");
         ticket = Data.TICKETES.busquedaTicketPorID(id);
         TxtIdTicket.setText(Integer.toString(ticket.getId()));
         TxtDescripcion.setText(ticket.getDescripcion());
