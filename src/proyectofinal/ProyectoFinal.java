@@ -37,8 +37,8 @@ public class ProyectoFinal {
         Data.LISTA_USUARIOS.inserta(marta);
         
         Data.TICKETES.encola(new Ticket(mario, "Errores varios en el sistema X"));
-        Data.TICKETES.encola(new Ticket(romeo, "Errores varios en el sistema X"));
-        Data.TICKETES.encola(new Ticket(marta, "Errores varios en el sistema X"));
+        Data.TICKETES.encola(new Ticket(romeo, "Errores varios en el sistema Y"));
+        Data.TICKETES.encola(new Ticket(marta, "Errores varios en el sistema Z"));
         
         Login login = new Login();
         login.show();
