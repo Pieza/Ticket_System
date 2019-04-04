@@ -113,8 +113,10 @@ public class AgregarNuevoTicket extends javax.swing.JFrame {
     private void BtnCrearTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearTicketActionPerformed
         // TODO add your handling code here:
         if (validarDatos()) {
+            ListaTicketsCliente lista = new ListaTicketsCliente();
             Data.TICKETES.encola(new Ticket((Cliente)InformacionUsuario.usuario,txtDescripcion.getText()));
             JOptionPane.showMessageDialog(null, "Tickete creado correctamente!");
+            lista.cargarTicketes();
             this.dispose();
         }
     }//GEN-LAST:event_BtnCrearTicketActionPerformed

@@ -32,7 +32,7 @@ public class ListaTicketsCliente extends javax.swing.JFrame {
         LblUsuarioLogueado.setText(InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos());
     }
     
-    private void cargarTicketes() {
+    public void cargarTicketes() {
         // se extrae la lista de ticketes del usuario usando el id
         String[] listaTicketes = Data.TICKETES.extraeTicketsPorCLiente(InformacionUsuario.usuario.getNombre(), InformacionUsuario.usuario.getApellidos());
 
@@ -65,7 +65,9 @@ public class ListaTicketsCliente extends javax.swing.JFrame {
         TableTickets = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         LblUsuarioLogueado = new javax.swing.JLabel();
-        BtnIngresarNuevoTicket = new javax.swing.JButton();
+        BtnActualizar = new javax.swing.JButton();
+        BtnIngresarNuevoTicket1 = new javax.swing.JButton();
+        BtnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,10 +103,24 @@ public class ListaTicketsCliente extends javax.swing.JFrame {
         LblUsuarioLogueado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         LblUsuarioLogueado.setText("\"\"");
 
-        BtnIngresarNuevoTicket.setText("Nuevo Ticket");
-        BtnIngresarNuevoTicket.addActionListener(new java.awt.event.ActionListener() {
+        BtnActualizar.setText("Actualizar");
+        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnIngresarNuevoTicketActionPerformed(evt);
+                BtnActualizarActionPerformed(evt);
+            }
+        });
+
+        BtnIngresarNuevoTicket1.setText("Nuevo Ticket");
+        BtnIngresarNuevoTicket1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnIngresarNuevoTicket1ActionPerformed(evt);
+            }
+        });
+
+        BtnLogOut.setText("Salir");
+        BtnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLogOutActionPerformed(evt);
             }
         });
 
@@ -112,17 +128,28 @@ public class ListaTicketsCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LblUsuarioLogueado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnIngresarNuevoTicket)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LblUsuarioLogueado))
+                            .addComponent(BtnLogOut))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(571, Short.MAX_VALUE)
+                    .addComponent(BtnIngresarNuevoTicket1)
+                    .addGap(20, 20, 20)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,11 +157,19 @@ public class ListaTicketsCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(LblUsuarioLogueado)
-                    .addComponent(BtnIngresarNuevoTicket))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                    .addComponent(LblUsuarioLogueado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnLogOut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(BtnActualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(BtnIngresarNuevoTicket1)
+                    .addContainerGap(433, Short.MAX_VALUE)))
         );
 
         pack();
@@ -153,15 +188,30 @@ public class ListaTicketsCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TableTicketsMouseClicked
 
-    private void BtnIngresarNuevoTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarNuevoTicketActionPerformed
+    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
+        // TODO add your handling code here:
+        cargarTicketes();
+    }//GEN-LAST:event_BtnActualizarActionPerformed
+
+    private void BtnIngresarNuevoTicket1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarNuevoTicket1ActionPerformed
         // TODO add your handling code here:
         AgregarNuevoTicket nuevo = new AgregarNuevoTicket();
         nuevo.show();
-    }//GEN-LAST:event_BtnIngresarNuevoTicketActionPerformed
+    }//GEN-LAST:event_BtnIngresarNuevoTicket1ActionPerformed
+
+    private void BtnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogOutActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login();
+        InformacionUsuario.usuario = null;
+        this.dispose();
+        login.show();
+    }//GEN-LAST:event_BtnLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnIngresarNuevoTicket;
+    private javax.swing.JButton BtnActualizar;
+    private javax.swing.JButton BtnIngresarNuevoTicket1;
+    private javax.swing.JButton BtnLogOut;
     private javax.swing.JLabel LblUsuarioLogueado;
     private javax.swing.JTable TableTickets;
     private javax.swing.JLabel jLabel1;

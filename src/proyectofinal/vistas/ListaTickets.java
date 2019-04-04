@@ -86,6 +86,8 @@ public class ListaTickets extends javax.swing.JFrame {
         LblUsuarioLogueado = new javax.swing.JLabel();
         CmbxAsignacionTickets = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
+        BtnActualizar = new javax.swing.JButton();
+        BtnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +137,20 @@ public class ListaTickets extends javax.swing.JFrame {
 
         jLabel2.setText("Ver tickets:");
 
+        BtnActualizar.setText("Actualizar");
+        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnActualizarActionPerformed(evt);
+            }
+        });
+
+        BtnLogOut.setText("Salir");
+        BtnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLogOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,14 +159,20 @@ public class ListaTickets extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LblUsuarioLogueado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CmbxAsignacionTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CmbxAsignacionTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnLogOut)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -162,7 +184,11 @@ public class ListaTickets extends javax.swing.JFrame {
                     .addComponent(LblUsuarioLogueado)
                     .addComponent(CmbxAsignacionTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnLogOut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(BtnActualizar)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -190,15 +216,34 @@ public class ListaTickets extends javax.swing.JFrame {
 
     private void CmbxAsignacionTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbxAsignacionTicketsActionPerformed
         // TODO add your handling code here:
+        actualizarVentana();
+    }//GEN-LAST:event_CmbxAsignacionTicketsActionPerformed
+
+    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
+        // TODO add your handling code here:
+        actualizarVentana();
+    }//GEN-LAST:event_BtnActualizarActionPerformed
+
+    private void actualizarVentana() {
         if (CmbxAsignacionTickets.getSelectedItem().equals("Sin asignar")) {
             cargarTicketsSinAsignar();
         } else {
             cargarTicketes();
         }
-    }//GEN-LAST:event_CmbxAsignacionTicketsActionPerformed
+    }
+
+    private void BtnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogOutActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login();
+        InformacionUsuario.usuario = null;
+        this.dispose();
+        login.show();
+    }//GEN-LAST:event_BtnLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnActualizar;
+    private javax.swing.JButton BtnLogOut;
     private javax.swing.JComboBox CmbxAsignacionTickets;
     private javax.swing.JLabel LblUsuarioLogueado;
     private javax.swing.JTable TableTickets;
