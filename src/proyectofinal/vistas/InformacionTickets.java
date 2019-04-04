@@ -8,8 +8,10 @@ package proyectofinal.vistas;
 import javax.swing.JOptionPane;
 import proyectofinal.enums.EstadoTickete;
 import proyectofinal.objetos.Administrador;
+import proyectofinal.objetos.Cliente;
 import proyectofinal.objetos.Ticket;
 import proyectofinal.utilidades.Data;
+import proyectofinal.utilidades.InformacionUsuario;
 
 /**
  *
@@ -28,16 +30,20 @@ public class InformacionTickets extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        if (estadoTicket.equalsIgnoreCase("SIN_ASIGNAR")) {
-            CmbxUsuarios.show(true);
-            LblAsignarCasoA.show(true);
+        if (InformacionUsuario.usuario instanceof Cliente) {
+            CmbxUsuarios.show(false);
+            LblAsignarCasoA.show(false);
+        }
+        if ((estadoTicket.equalsIgnoreCase("SIN_ASIGNAR"))) {
+            //CmbxUsuarios.show(true);
+            //LblAsignarCasoA.show(true);
             //cargarUsuarioCombobox();
         } else {
             //CmbxUsuarios.show(false);
             LblAsignarCasoA.setText("Reasignar a:");
         }
         this.id = id;
-        
+
         actualizarVista();
     }
 
@@ -51,18 +57,19 @@ public class InformacionTickets extends javax.swing.JFrame {
         }
         // se verifica si hay un asignado para el ticket
         Administrador asignado = ticket.getAsignadolvl1() != null ? ticket.getAsignadolvl1()
-                : ticket.getAsignadolvl2() != null ? ticket.getAsignadolvl2() 
+                : ticket.getAsignadolvl2() != null ? ticket.getAsignadolvl2()
                 : ticket.getAsignadolvl3() != null ? ticket.getAsignadolvl3()
                 : null;
-        
+
         // si hay asignado se selecciona en el combo box
-        if(asignado != null){
+        if (asignado != null) {
             for (int i = 0; i < listaUsuarios.length; i++) {
-                if(listaUsuarios[i].contains("[" + asignado.getId() + "]"))
+                if (listaUsuarios[i].contains("[" + asignado.getId() + "]")) {
                     CmbxUsuarios.setSelectedIndex(i);
-                
+                }
+
             }
-            
+
         }
     }
 
@@ -71,11 +78,11 @@ public class InformacionTickets extends javax.swing.JFrame {
             // se obtiene el usuario seleccionado
             String strUser = CmbxUsuarios.getSelectedItem().toString();
             int id = Integer.parseInt(strUser.substring(1, strUser.indexOf("]")));
-            
+
             // se obtiene el estado seleccionado
             EstadoTickete estado = EstadoTickete.valueOf(CmbxEstadoCaso.getSelectedItem().toString());
             Administrador asignado = (Administrador) Data.LISTA_USUARIOS.extrae(id);
-            
+
             // se actualiza el ticket
             if (Data.TICKETES.actualizarTicket(ticket.getId(), TxtNuevaActualizacion.getText(), estado, asignado)) {
                 JOptionPane.showMessageDialog(null, "Tickete actualizado correctamente!");
@@ -96,6 +103,7 @@ public class InformacionTickets extends javax.swing.JFrame {
         TxtDescripcion.setText(ticket.getDescripcion());
         TxtEmailCliente.setText(ticket.getCreadoPor().getCorreo());
         TxtNombreCliente.setText(ticket.getCreadoPor().getNombre() + " " + ticket.getCreadoPor().getApellidos());
+        TxttelefonoCliente.setText(Integer.toString(ticket.getCreadoPor().getTelefono()));
         TxtHistorialCaso.setText(ticket.getHistorial());
         cargarUsuarioCombobox();
         // se elige el estado del tickete en el combobox
@@ -281,7 +289,11 @@ public class InformacionTickets extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnActualizarCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarCasoActionPerformed
-        actualizarTickete();
+        if (!TxtNuevaActualizacion.getText().isEmpty()) {
+            actualizarTickete();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese una actualización válida");
+        }
     }//GEN-LAST:event_BtnActualizarCasoActionPerformed
 
 

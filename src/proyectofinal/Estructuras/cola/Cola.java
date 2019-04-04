@@ -157,7 +157,7 @@ public class Cola {
         while (aux != null) {
             if (aux.getDato().getId() == id) {
                 aux.getDato().setNuevaActualizacion(nuevaActualizacion);
-                String datosActualizacion = "\n***Actualizado por " + InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos() + " a las " + Utils.obtenerFechaActual();
+                String datosActualizacion = "\n***Actualizado por " + InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos() + " a las " + Utils.obtenerFechaActual()+"**";
                 datosActualizacion = datosActualizacion.toUpperCase();
 
                 aux.getDato().setEstado(estado);
