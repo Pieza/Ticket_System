@@ -46,8 +46,9 @@ public class InformacionTickets extends javax.swing.JFrame {
             LblAsignarCasoA.setText("Ticket completado por:");
             lblNuevaActualizacion.show(false);
             TxtNuevaActualizacion.show(false);
-            CmbxUsuarios.setEditable(false);
-            CmbxEstadoCaso.setEditable(false);
+            CmbxUsuarios.setEnabled(false);
+            CmbxEstadoCaso.setEnabled(false);
+            BtnActualizarCaso.show(false);
         }
         this.id = id;
 
