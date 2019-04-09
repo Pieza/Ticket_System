@@ -42,6 +42,13 @@ public class InformacionTickets extends javax.swing.JFrame {
             //CmbxUsuarios.show(false);
             LblAsignarCasoA.setText("Reasignar a:");
         }
+        if(estadoTicket.equalsIgnoreCase("COMPLETADO")){
+            LblAsignarCasoA.setText("Ticket completado por:");
+            lblNuevaActualizacion.show(false);
+            TxtNuevaActualizacion.show(false);
+            CmbxUsuarios.setEditable(false);
+            CmbxEstadoCaso.setEditable(false);
+        }
         this.id = id;
 
         actualizarVista();
@@ -154,7 +161,7 @@ public class InformacionTickets extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TxtHistorialCaso = new javax.swing.JTextArea();
         BtnActualizarCaso = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        lblNuevaActualizacion = new javax.swing.JLabel();
         LblAsignarCasoA = new javax.swing.JLabel();
         CmbxUsuarios = new javax.swing.JComboBox<String>();
 
@@ -200,7 +207,7 @@ public class InformacionTickets extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Nueva Actualización:");
+        lblNuevaActualizacion.setText("Nueva Actualización:");
 
         LblAsignarCasoA.setText("Asignar caso a:");
 
@@ -244,7 +251,7 @@ public class InformacionTickets extends javax.swing.JFrame {
                             .addComponent(TxtEmailCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(TxttelefonoCliente))
                         .addGap(25, 25, 25)
-                        .addComponent(jLabel7)
+                        .addComponent(lblNuevaActualizacion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1)))
                 .addGap(20, 20, 20))
@@ -276,7 +283,7 @@ public class InformacionTickets extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(TxtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                            .addComponent(lblNuevaActualizacion))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -319,8 +326,8 @@ public class InformacionTickets extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblNuevaActualizacion;
     // End of variables declaration//GEN-END:variables
 }
