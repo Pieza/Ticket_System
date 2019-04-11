@@ -5,8 +5,8 @@ package proyectofinal.objetos;
 public class Cliente extends Usuario{
     public int telefono;
 
-    public Cliente(int telefono, String nombre, String apellidos, String correo, String password, int id) {
-        super(nombre, apellidos, correo, password, id);
+    public Cliente(int telefono, String nombre, String apellidos, String correo, String password) {
+        super(nombre, apellidos, correo, password);
         this.telefono = telefono;
     }
 

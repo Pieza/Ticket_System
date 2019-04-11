@@ -8,8 +8,11 @@ import proyectofinal.utilidades.InformacionUsuario;
 public class ListaDobleCircular {
 
     private Nodo cabeza, ultimo;
-
+    private int ultimoIdInsertado = 0;
+    
     public void inserta(Usuario u) {
+        ultimoIdInsertado++;
+        u.setId(ultimoIdInsertado);
         //preguntamos si cabeza es null para saber si esta vacio o no
         if (cabeza == null) {
             //Creamos el objeto y le asignamos a cabeza
