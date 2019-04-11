@@ -1,5 +1,6 @@
 package proyectofinal.objetos;
 
+/*Clase cliente hereda de la clase Usuario*/
 
 public class Cliente extends Usuario{
     public int telefono;
