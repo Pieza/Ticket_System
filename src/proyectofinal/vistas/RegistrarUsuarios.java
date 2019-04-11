@@ -24,6 +24,8 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         for (String tipo : tiposUsuarios) {
             CmbxTipoUsuario.addItem(tipo);
         }
+        this.setLocationRelativeTo(null);
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
