@@ -35,26 +35,33 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
     }
     
     private void registrarusuario(){
-        // admin
-        if(CmbxTipoUsuario.getSelectedIndex() == 0){
-            Data.LISTA_USUARIOS.inserta(new Administrador(
-                    NivelSoporte.valueOf(CmbxLvl.getSelectedItem().toString()), 
-                    TxtNombre.getText(), 
-                    TxtApellidos.getText(), 
-                    TxtCorreo.getText(), 
-                    TxtContrasena.getText()));
+        try {
+            // admin
+            if(CmbxTipoUsuario.getSelectedIndex() == 0){
+                Data.LISTA_USUARIOS.inserta(new Administrador(
+                        NivelSoporte.valueOf(CmbxLvl.getSelectedItem().toString()), 
+                        TxtNombre.getText(), 
+                        TxtApellidos.getText(), 
+                        TxtCorreo.getText(), 
+                        TxtContrasena.getText()));
+            }
+            // cliente
+            else if(CmbxTipoUsuario.getSelectedIndex() == 1){
+                String nombre = TxtNombre.getText();
+                Data.LISTA_USUARIOS.inserta(new Cliente(
+                        Integer.parseInt(TxtTelefono.getText()), 
+                        TxtNombre.getText(), 
+                        TxtApellidos.getText(), 
+                        TxtCorreo.getText(), 
+                        TxtContrasena.getText()));
+            }
+            JOptionPane.showMessageDialog(null, "Usuario registrado correctamente!");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
         }
-        // cliente
-        else if(CmbxTipoUsuario.getSelectedIndex() == 1){
-            Data.LISTA_USUARIOS.inserta(new Cliente(
-                    Integer.parseInt(TxtTelefono.getText()), 
-                    TxtNombre.getText(), 
-                    TxtApellidos.getText(), 
-                    TxtCorreo.getText(), 
-                    TxtContrasena.getText()));
-        }
-        JOptionPane.showMessageDialog(null, "Usuario registrado correctamente!");
+
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
