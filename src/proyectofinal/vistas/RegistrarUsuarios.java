@@ -5,6 +5,10 @@
  */
 package proyectofinal.vistas;
 
+import proyectofinal.enums.NivelSoporte;
+import proyectofinal.objetos.Administrador;
+import proyectofinal.utilidades.Data;
+
 /**
  *
  * @author ulacit
@@ -27,6 +31,23 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
     }
+    
+    private void registrarusuario(){
+        // admin
+        if(CmbxTipoUsuario.getSelectedIndex() == 0){
+            NivelSoporte nivel = 
+            Data.LISTA_USUARIOS.inserta(new Administrador(
+                    NivelSoporte.LVL_1, 
+                    TxtNombre.getText(), 
+                    TxtApellidos.getText(), 
+                    TxtCorreo.getText(), 
+                    "123"));
+        }
+        // cliente
+        else if(CmbxTipoUsuario.getSelectedIndex() == 1){
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +64,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         CmbxTipoUsuario = new javax.swing.JComboBox<>();
         TxtCorreo = new javax.swing.JTextField();
         TxtContrasena = new javax.swing.JTextField();
-        CmbxNivelSoporte = new javax.swing.JComboBox<>();
+        CmbxLvl = new javax.swing.JComboBox<>();
         TxtTelefono = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -73,7 +94,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
             }
         });
 
-        CmbxNivelSoporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbxLvl.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Tipo de usuario:");
 
@@ -120,7 +141,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(LblNivelSoporte)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CmbxNivelSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CmbxLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(TxtTelefono))
                 .addGap(138, 138, 138))
             .addGroup(layout.createSequentialGroup()
@@ -138,7 +159,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
                     .addComponent(CmbxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(LblNivelSoporte)
-                    .addComponent(CmbxNivelSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CmbxLvl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,10 +199,10 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         if (CmbxTipoUsuario.getSelectedItem().equals("ADMIN")) {
             LblTelefono.show(false);
             TxtTelefono.show(false);
-            CmbxNivelSoporte.show(true);
+            CmbxLvl.show(true);
             LblNivelSoporte.show(true);
         }else{
-            CmbxNivelSoporte.show(false);
+            CmbxLvl.show(false);
             LblNivelSoporte.show(false);
             LblTelefono.show(true);
             TxtTelefono.show(true);
@@ -190,7 +211,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CmbxNivelSoporte;
+    private javax.swing.JComboBox<String> CmbxLvl;
     private javax.swing.JComboBox<String> CmbxTipoUsuario;
     private javax.swing.JLabel LblNivelSoporte;
     private javax.swing.JLabel LblTelefono;

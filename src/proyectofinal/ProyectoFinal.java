@@ -5,7 +5,6 @@
  */
 package proyectofinal;
 
-import proyectofinal.enums.EstadoTickete;
 import proyectofinal.enums.NivelSoporte;
 import proyectofinal.objetos.Administrador;
 import proyectofinal.objetos.Cliente;
