@@ -5,8 +5,10 @@
  */
 package proyectofinal.vistas;
 
+import javax.swing.JOptionPane;
 import proyectofinal.enums.NivelSoporte;
 import proyectofinal.objetos.Administrador;
+import proyectofinal.objetos.Cliente;
 import proyectofinal.utilidades.Data;
 
 /**
@@ -35,18 +37,23 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
     private void registrarusuario(){
         // admin
         if(CmbxTipoUsuario.getSelectedIndex() == 0){
-            NivelSoporte nivel = 
             Data.LISTA_USUARIOS.inserta(new Administrador(
-                    NivelSoporte.LVL_1, 
+                    NivelSoporte.valueOf(CmbxLvl.getSelectedItem().toString()), 
                     TxtNombre.getText(), 
                     TxtApellidos.getText(), 
                     TxtCorreo.getText(), 
-                    "123"));
+                    TxtContrasena.getText()));
         }
         // cliente
         else if(CmbxTipoUsuario.getSelectedIndex() == 1){
-            
+            Data.LISTA_USUARIOS.inserta(new Cliente(
+                    Integer.parseInt(TxtTelefono.getText()), 
+                    TxtNombre.getText(), 
+                    TxtApellidos.getText(), 
+                    TxtCorreo.getText(), 
+                    TxtContrasena.getText()));
         }
+        JOptionPane.showMessageDialog(null, "Usuario registrado correctamente!");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,6 +85,11 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Iniciar Sesión");
 
@@ -94,7 +106,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
             }
         });
 
-        CmbxLvl.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbxLvl.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LVL_1", "LVL_2", "LVL_3" }));
 
         jLabel1.setText("Tipo de usuario:");
 
@@ -210,6 +222,10 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
             TxtTelefono.show(true);
         }
     }//GEN-LAST:event_CmbxTipoUsuarioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        registrarusuario();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
