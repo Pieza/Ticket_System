@@ -66,7 +66,6 @@ public class Arbol {
     public String[] preOrden() {
         String result = "";
         if (raiz != null) {
-            System.out.println("PreOrden");
             result = preOrdenRecursivo(raiz);
         }
         return result.split(";");

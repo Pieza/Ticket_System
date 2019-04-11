@@ -26,6 +26,7 @@ public class ListaTickets extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cargarTicketes();
 
+        //obtenemos la informacion del logueo del usuario
         LblUsuarioLogueado.setText(InformacionUsuario.usuario.getNombre() + " " + InformacionUsuario.usuario.getApellidos());
     }
 
@@ -213,9 +214,9 @@ public class ListaTickets extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             DefaultTableModel model = (DefaultTableModel) TableTickets.getModel();
-            int filaSeleccionada = TableTickets.getSelectedRow();
-            int id = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
-            InformacionTickets info = new InformacionTickets(id, model.getValueAt(filaSeleccionada, 2).toString());
+            int filaSeleccionada = TableTickets.getSelectedRow();//obtenemos la fila que seleccionamos
+            int id = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());//obtenemos la columna 0 de la fila que seleccionamos para tener el id
+            InformacionTickets info = new InformacionTickets(id, model.getValueAt(filaSeleccionada, 2).toString());//nos vamos a la informacion del ticket con el id para la busqueda
             info.show();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Acción no válida");
@@ -234,12 +235,14 @@ public class ListaTickets extends javax.swing.JFrame {
 
     private void BtnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHistorialActionPerformed
         // TODO add your handling code here:
+        //creamos una nueva instancia de formulario y ocultamos el actual
         HistorialTickets historial = new HistorialTickets();
         this.dispose();
         historial.show();
     }//GEN-LAST:event_BtnHistorialActionPerformed
 
     private void actualizarVentana() {
+        //revisamos el estado del ticket para asi cargar diferentes, los asinados y los que no
         if (CmbxAsignacionTickets.getSelectedItem().equals("Sin asignar")) {
             cargarTicketsSinAsignar();
         } else {
@@ -248,7 +251,7 @@ public class ListaTickets extends javax.swing.JFrame {
     }
 
     private void BtnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogOutActionPerformed
-
+        //borramos datos y salimos del sistema
         Login login = new Login();
         InformacionUsuario.usuario = null;
         this.dispose();
