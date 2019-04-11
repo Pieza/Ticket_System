@@ -44,6 +44,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         BtnIngresar = new javax.swing.JButton();
         TxtContrasena = new javax.swing.JPasswordField();
+        BtnRegistrarUsuarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +71,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        BtnRegistrarUsuarios.setText("Registrar Usuarios");
+        BtnRegistrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegistrarUsuariosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,7 +85,10 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(BtnIngresar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnRegistrarUsuarios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnIngresar))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +98,7 @@ public class Login extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,8 +107,10 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TxtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(BtnIngresar)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnIngresar)
+                    .addComponent(BtnRegistrarUsuarios))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -118,6 +131,13 @@ public class Login extends javax.swing.JFrame {
             iniciar();
         }
     }//GEN-LAST:event_TxtUsuarioKeyPressed
+
+    private void BtnRegistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarUsuariosActionPerformed
+        // TODO add your handling code here:
+        RegistrarUsuarios usuarios = new RegistrarUsuarios();
+        usuarios.show(true);
+        this.hide();
+    }//GEN-LAST:event_BtnRegistrarUsuariosActionPerformed
 
     private void iniciar() {
         if (validarDatos()) {
@@ -161,6 +181,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnIngresar;
+    private javax.swing.JButton BtnRegistrarUsuarios;
     private javax.swing.JPasswordField TxtContrasena;
     private javax.swing.JTextField TxtUsuario;
     private javax.swing.JLabel jLabel1;
