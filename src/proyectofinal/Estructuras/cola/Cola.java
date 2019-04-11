@@ -14,6 +14,7 @@ public class Cola {
 
     //Añade datos a la cola
     public void encola(Ticket t) {
+        //crea id por defecto para asi no tener duplicidad de id
         ultimoIdInsertado++;
         t.setId(ultimoIdInsertado);
         Nodo n = new Nodo(t);
@@ -109,7 +110,7 @@ public class Cola {
             aux = aux.getAtras();
         }
 
-        // retorna null si no encuentra tickets
+        
         return resultado.split(";");
     }
 
@@ -128,7 +129,7 @@ public class Cola {
             aux = aux.getAtras();
         }
 
-        // retorna null si no encuentra tickets
+        
         return resultado.split(";");
     }
 
@@ -146,7 +147,7 @@ public class Cola {
             aux = aux.getAtras();
         }
 
-        // retorna null si no encuentra tickets
+        
         return resultado.split(";");
     }
 
