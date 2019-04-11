@@ -7,12 +7,11 @@ public class Usuario {
 
     public Usuario(){}
 
-    public Usuario(String nombre, String apellidos, String correo, String password, int id) {
+    public Usuario(String nombre, String apellidos, String correo, String password) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.password = password;
-        this.id = id;
     }
     
     public String getNombre() {

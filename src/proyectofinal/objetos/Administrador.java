@@ -8,8 +8,8 @@ public class Administrador extends Usuario{
 
     public Administrador() {} 
 
-    public Administrador(NivelSoporte nivel, String nombre, String apellidos, String correo, String password, int id) {
-        super(nombre, apellidos, correo, password, id);
+    public Administrador(NivelSoporte nivel, String nombre, String apellidos, String correo, String password) {
+        super(nombre, apellidos, correo, password);
         this.nivel = nivel;
     }
 
