@@ -7,6 +7,7 @@ public class Arbol {
     private Nodo raiz;
 
     public void inserta(Ticket ticket) {
+        //preguntamos si la raiz es null
         if (raiz == null) {
             raiz = new Nodo(ticket);
         } else {
