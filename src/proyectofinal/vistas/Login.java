@@ -157,7 +157,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private boolean validarDatos() {
-
+        //validamos que los datos que estamos ingresando sean correctos
         if (TxtContrasena.getText().isEmpty() && TxtUsuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor no dejar campos sin llenar");
             TxtContrasena.requestFocus();
