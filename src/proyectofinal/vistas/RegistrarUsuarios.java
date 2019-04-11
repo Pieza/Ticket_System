@@ -196,6 +196,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
 
     private void CmbxTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbxTipoUsuarioActionPerformed
         // TODO add your handling code here:
+        //si el valor del combo es ADMIN ocultamos el campo telefono
         if (CmbxTipoUsuario.getSelectedItem().equals("ADMIN")) {
             LblTelefono.show(false);
             TxtTelefono.show(false);
@@ -203,6 +204,7 @@ public class RegistrarUsuarios extends javax.swing.JFrame {
             LblNivelSoporte.show(true);
         }else{
             CmbxLvl.show(false);
+            //si no lo es ocultamos el combo nivel soporte y mostramos el telefono
             LblNivelSoporte.show(false);
             LblTelefono.show(true);
             TxtTelefono.show(true);
